@@ -1,0 +1,22 @@
+[eth0]
+label=Eth:
+command=/bin/bash -c "ip -4 addr show eth0 | grep 'inet ' | awk '{print \$2}' | cut -d/ -f1"
+interval=60
+
+[wlp1s0]
+label=WiFi:
+command=/bin/bash -c "nmcli -t -f active,ssid dev wifi | grep '^yes:' | cut -d: -f2 || echo 'Not connected'"
+interval=30
+
+[vpn]
+label=VPN:
+command=/bin/bash -c "status=\$(nordvpn status | grep '^Status:' | awk '{print \$2}'); if [ \"\$status\" = 'Connected' ]; then city=\$(nordvpn status | grep '^City:' | cut -d':' -f2 | xargs); echo \"\$city\"; else echo 'Disconnected'; fi"
+interval=30
+
+[battery]
+command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging") s="CHR"; else if($1=="Discharging") s="DCR"; else if($1=="Not charging") s="NCR"; else s=$1; print "Batt: " s " " $2}'
+interval=30
+
+[time]
+command=date '+%m-%d-%Y %H:%M'
+interval=10
