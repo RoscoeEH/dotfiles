@@ -10,3 +10,4 @@ alias cc='cargo clean'
 
 alias vpns='nordvpn c Seattle'
 alias vpnny='nordvpn c New_York'
+
