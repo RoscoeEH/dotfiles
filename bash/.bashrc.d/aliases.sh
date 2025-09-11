@@ -7,3 +7,6 @@ alias py='python3'
 alias cb='cargo build'
 alias cr='cargo run'
 alias cc='cargo clean'
+
+alias vpns='nordvpn c Seattle'
+alias vpnny='nordvpn c New_York'
