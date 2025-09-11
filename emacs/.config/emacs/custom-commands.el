@@ -513,5 +513,15 @@
 
 (global-set-key (kbd "M-s") 'save-buffer)
 
+;; Minesweeper working in evil mode
+(use-package minesweeper
+  :ensure t
+  :config
+  (with-eval-after-load 'evil
+    (evil-define-key 'normal minesweeper-mode-map
+      (kbd "RET") #'minesweeper-choose)))
+
+(global-set-key (kbd "C-z") 'undo)
+
 
 ;;; custum-commands.el ends here
