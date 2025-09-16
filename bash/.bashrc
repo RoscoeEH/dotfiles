@@ -27,8 +27,8 @@ fi
 unset rc
 
 # Variables
-export EDITOR='Vi'
-export VISUAL='Vi'
+export EDITOR='vi'
+export VISUAL='vi'
 
 export TERMINAL='urxvt'
 
