@@ -18,6 +18,8 @@
 
 (setq magit-git-executable "/usr/bin/git")
 (setenv "SSH_AUTH_SOCK" (getenv "SSH_AUTH_SOCK"))
+(setenv "GIT_ASKPASS" "")
+
 
 (with-eval-after-load 'magit
   (define-key magit-mode-map (kbd "M-p") 'magit-section-backward-sibling)
