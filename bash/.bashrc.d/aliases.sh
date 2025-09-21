@@ -11,3 +11,11 @@ alias cc='cargo clean'
 alias vpns='nordvpn c Seattle'
 alias vpnny='nordvpn c New_York'
 alias vpn='nordvpn'
+
+alias shredd='shred -uz --iterations=10'
+
+alias wirein='sudo wg-quick up wg0'
+alias wireout='sudo wg-quick down wg0'
+
+alias zip='tar -czf'
+alias extract='tar -xvf'
