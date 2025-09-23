@@ -19,3 +19,6 @@ alias wireout='sudo wg-quick down wg0'
 
 alias zip='tar -czf'
 alias extract='tar -xvf'
+
+alias mnt='udisksctl mount -b'
+alias eject='~/Tools/eject-drive.sh'
