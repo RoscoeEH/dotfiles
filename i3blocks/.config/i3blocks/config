@@ -8,10 +8,12 @@ label=WiFi:
 command=/bin/bash -c "nmcli -t -f active,ssid dev wifi | grep '^yes:' | cut -d: -f2 || echo 'Not connected'"
 interval=30
 
+
 [vpn]
 label=VPN:
-command=/bin/bash -c "status=\$(nordvpn status | grep '^Status:' | awk '{print \$2}'); if [ \"\$status\" = 'Connected' ]; then city=\$(nordvpn status | grep '^City:' | cut -d':' -f2 | xargs); echo \"\$city\"; else echo 'Disconnected'; fi"
+command=/bin/bash -c "status=\$(nordvpn status | grep '^Status:' | awk '{print \$2}'); if [ \"\$status\" = 'Connected' ]; then city=\$(nordvpn status | grep '^City:' | cut -d':' -f2 | xargs); echo \"\$city\"; else if ip link show wg0 >/dev/null 2>&1 && ip -o link show wg0 | grep -q 'UP'; then echo 'WireGuard'; else echo 'Disconnected'; fi; fi"
 interval=30
+
 
 [battery]
 command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging") s="CHR"; else if($1=="Discharging") s="DCR"; else if($1=="Not charging") s="NCR"; else s=$1; print "Batt: " s " " $2}'
