@@ -22,3 +22,5 @@ alias extract='tar -xvf'
 
 alias mnt='udisksctl mount -b'
 alias eject='~/Tools/eject-drive.sh'
+
+alias getip='curl ifconfig.co/'
