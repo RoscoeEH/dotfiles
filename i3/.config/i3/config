@@ -66,11 +66,12 @@ bindsym F4 exec playerctl previous
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
-
+# Backlight
+bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
 
 #interactive screenshot by pressing printscreen
 bindsym Print exec --no-startup-id /bin/screenshot.sh -a --interactive
-bindsym $mod+Print exec --no-startup-id /bin/screenshot.sh
+bindsym $mod+Print exec --no-startup-id /bin/screenshotTo.sh
 bindsym $mod+Shift+Print exec --no-startup-id /bin/screenshot.sh -w
 
 # Use Mouse+$mod to drag floating windows to their wanted position
