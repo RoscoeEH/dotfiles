@@ -5,9 +5,8 @@ interval=60
 
 [wlp1s0]
 label=WiFi:
-command=/bin/bash -c "nmcli -t -f active,ssid dev wifi | grep '^yes:' | cut -d: -f2 || echo 'Not connected'"
+command=/bin/bash -c 'if nmcli radio wifi | grep -q disabled; then echo "APM"; else ssid=$(nmcli -t -f active,ssid dev wifi | grep "^yes:" | cut -d: -f2); if [ -n "$ssid" ]; then echo "$ssid"; else echo "Not connected"; fi; fi'
 interval=30
-
 
 [vpn]
 label=VPN:
