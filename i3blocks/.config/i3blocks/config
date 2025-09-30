@@ -1,3 +1,8 @@
+[volume]
+label=Vol:
+command=/bin/bash -c "pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print \$5}'"
+interval=5
+
 [eth0]
 label=Eth:
 command=/bin/bash -c "ip -4 addr show eth0 | grep 'inet ' | awk '{print \$2}' | cut -d/ -f1"
