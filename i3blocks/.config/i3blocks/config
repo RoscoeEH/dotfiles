@@ -1,7 +1,14 @@
+[hidden]
+label=Hidden:
+command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.window != null and .floating_nodes == [] and .nodes == [] and .floating == \"user_on\")] | length"'
+interval=600
+signal=2
+
 [volume]
 label=Vol:
-command=/bin/bash -c "pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print \$5}'"
-interval=5
+command=/bin/bash -c 'if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then echo "MUTE"; else pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk "{print \$5}"; fi'
+interval=600
+signal=1
 
 [eth0]
 label=Eth:
@@ -11,17 +18,17 @@ interval=60
 [wlp1s0]
 label=WiFi:
 command=/bin/bash -c 'if nmcli radio wifi | grep -q disabled; then echo "APM"; else ssid=$(nmcli -t -f active,ssid dev wifi | grep "^yes:" | cut -d: -f2); if [ -n "$ssid" ]; then echo "$ssid"; else echo "Not connected"; fi; fi'
-interval=30
+interval=10
 
 [vpn]
 label=VPN:
 command=/bin/bash -c "status=\$(nordvpn status | grep '^Status:' | awk '{print \$2}'); if [ \"\$status\" = 'Connected' ]; then city=\$(nordvpn status | grep '^City:' | cut -d':' -f2 | xargs); echo \"\$city\"; else if ip link show wg0 >/dev/null 2>&1 && ip -o link show wg0 | grep -q 'UP'; then echo 'WireGuard'; else echo 'Disconnected'; fi; fi"
-interval=30
+interval=10
 
 
 [battery]
 command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging") s="CHR"; else if($1=="Discharging") s="DCR"; else if($1=="Not charging") s="NCR"; else s=$1; print "Batt: " s " " $2}'
-interval=30
+interval=60
 
 [time]
 command=date '+%m-%d-%Y %H:%M'
