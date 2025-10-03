@@ -69,12 +69,15 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Backlight
 bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
 
-bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh
+bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 i3blocks && sleep 5 && pkill -RTMIN+4 i3blocks
 
 #interactive screenshot by pressing printscreen
 bindsym Print exec --no-startup-id /bin/screenshot.sh -a --interactive
 bindsym $mod+Print exec --no-startup-id /bin/screenshotTo.sh
 bindsym $mod+Shift+Print exec --no-startup-id /bin/screenshot.sh -w
+
+# toggle vpn
+bindsym $mod+Shift+v exec --no-startup-id ~/Tools/toggle-vpn.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+3 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

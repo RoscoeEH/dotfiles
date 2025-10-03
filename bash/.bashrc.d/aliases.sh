@@ -1,6 +1,7 @@
 alias dnfi='sudo dnf install'
 alias dnfu='sudo dnf update'
 alias dnfr='sudo dnf remove'
+alias updateall='sudo ~/Tools/update-packages.sh'
 
 alias py='python3'
 
