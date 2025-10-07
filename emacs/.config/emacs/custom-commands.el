@@ -524,4 +524,16 @@
 (global-set-key (kbd "C-z") 'undo)
 
 
+(with-eval-after-load 'evil
+  (global-set-key (kbd "C-s") 'save-buffer)
+
+  (define-key evil-normal-state-map (kbd "C-z") 'undo)
+  (define-key evil-visual-state-map (kbd "C-z") 'undo)
+
+  (define-key evil-normal-state-map (kbd "C-f") 'isearch-forward)
+  (define-key evil-visual-state-map (kbd "C-f") 'isearch-forward)
+  (global-set-key (kbd "C-f") 'isearch-forward)
+
+  (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward))
+
 ;;; custum-commands.el ends here
