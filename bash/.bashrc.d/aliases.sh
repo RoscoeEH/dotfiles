@@ -24,4 +24,11 @@ alias extract='tar -xvf'
 alias mnt='udisksctl mount -b'
 alias eject='~/Tools/eject-drive.sh'
 
-alias getip='curl ifconfig.co/'
+alias settimeest="timedatectl set-timezone America/New_York"
+alias settimepst="timedatectl set-timezone America/Los_Angeles"
+alias settimecst="timedatectl set-timezone America/Detroit"
+alias settimemst="timedatectl set-timezone America/Denver"
+alias settimejst="timedatectl set-timezone Asia/Tokyo"
+
+alias jfon="sudo systemctl start jellyfin"
+alias jfoff="sudo systemctl stop jellyfin"
