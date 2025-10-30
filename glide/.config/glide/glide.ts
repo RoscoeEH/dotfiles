@@ -19,3 +19,6 @@
 
 glide.o.hint_size = "16px";
 
+// Security settings
+glide.prefs.set("privacy.trackingprotection.enabled", true);
+glide.prefs.set("privacy.bounceTrackingProtection.mode", 1);
