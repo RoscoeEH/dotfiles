@@ -28,6 +28,7 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
+
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -t -i ~/System_Images/screensaver.png -c 000000
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -166,6 +167,7 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+o workspace next
+bindsym $mod+n exec --no-startup-id i3-open-next-ws --focus
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
@@ -178,6 +180,7 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
+bindsym $mod+Shift+n exec --no-startup-id i3-open-next-ws --move
 bindsym $mod+m move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
 bindsym $mod+Shift+m scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
 
