@@ -245,6 +245,8 @@ exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.jpg
 # Open Emacs without the annoying warning
 bindsym $mod+e exec "emacs-lucid"
 
+bindsym $mod+b exec --no-startup-id glide
+
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
 
