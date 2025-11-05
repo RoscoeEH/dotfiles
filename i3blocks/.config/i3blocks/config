@@ -33,5 +33,5 @@ command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging"
 interval=60
 
 [time]
-command=date '+%m-%d-%Y %H:%M'
+command=date '+%A %m-%d-%Y %H:%M'
 interval=10

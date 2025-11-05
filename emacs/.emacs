@@ -13,8 +13,8 @@
  '(package-selected-packages
    '(ace-window auctex bm buffer-move company consult dashboard direnv
                 evil-collection evil-snipe exec-path-from-shell exwm
-                flycheck-rust goto-last-change key-chord magit
-                markdown-mode merlin minesweeper ocamlformat
+                flycheck-rust goto-last-change key-chord lsp-mode
+                magit markdown-mode merlin minesweeper ocamlformat
                 opam-switch-mode origami pandoc-mode pdf-tools
                 rainbow-delimiters rust-mode tuareg vertico vterm)))
 (custom-set-faces
