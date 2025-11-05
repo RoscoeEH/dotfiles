@@ -33,3 +33,4 @@ export VISUAL='vi'
 export TERMINAL='urxvt'
 
 . "$HOME/.cargo/env"
+
