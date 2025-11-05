@@ -30,6 +30,8 @@ unset rc
 export EDITOR='vi'
 export VISUAL='vi'
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 export TERMINAL='urxvt'
 
 . "$HOME/.cargo/env"
