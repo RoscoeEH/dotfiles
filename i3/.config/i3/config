@@ -276,5 +276,14 @@ mode "power" {
 }
 
 
-bindsym $mod+Shift+w exec --no-startup-id urxvt -e "nmtui"
+mode "connect" {
+        bindsym w exec --no-startup-id urxvt -e "nmtui"; mode "default"
+        bindsym b exec --no-startup-id "blueman-manager"; mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+c mode "connect"
 
