@@ -54,6 +54,24 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
 
 
+mode "media" {
+        bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
+        bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
+        bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
+
+        bindsym p exec playerctl play-pause
+        bindsym period exec playerctl next
+        bindsym comma exec playerctl previous
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+p mode "media"
+
+
+
 # Media player controls
 # Play/Pause
 bindsym XF86AudioPlay exec playerctl play-pause
