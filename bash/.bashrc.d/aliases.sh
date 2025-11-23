@@ -30,8 +30,8 @@ alias settimecst="timedatectl set-timezone America/Detroit"
 alias settimemst="timedatectl set-timezone America/Denver"
 alias settimejst="timedatectl set-timezone Asia/Tokyo"
 
-alias jfon="sudo systemctl start jellyfin"
-alias jfoff="sudo systemctl stop jellyfin"
+alias jfon="sudo systemctl start jellyfin; pkill -RTMIN+5 i3blocks"
+alias jfoff="sudo systemctl stop jellyfin; pkill -RTMIN+5 i3blocks"
 
 alias setaudio="pactl set-default-sink"
 alias getaudio="~/Tools/audio-info.sh"

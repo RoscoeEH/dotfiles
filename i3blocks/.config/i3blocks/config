@@ -1,13 +1,19 @@
+[jf-local]
+label=Jellyfin:
+command=/bin/bash -c 'if systemctl status jellyfin | grep -q "(running)"; then echo "Active"; fi'
+interval=3600
+signal=5
+
 [hidden]
 label=Scratchpad:
 command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.window != null and .floating_nodes == [] and .nodes == [] and .floating == \"user_on\")] | length"'
-interval=600
+interval=3600
 signal=2
 
 [volume]
 label=Vol:
 command=/bin/bash -c 'if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then echo "MUTE"; else pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk "{print \$5}"; fi'
-interval=600
+interval=3600
 signal=1
 
 [eth0]

@@ -199,8 +199,8 @@ bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
 bindsym $mod+Shift+n exec --no-startup-id i3-open-next-ws --move
-bindsym $mod+m move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
-bindsym $mod+Shift+m scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
+bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
+bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -254,8 +254,8 @@ font pango:FiraCode 10
 
 # Configure laptop + dock monitors
 exec --no-startup-id autorandr --change --default laptop
-bindsym $mod+Up exec /bin/change_layout.sh home-dock
-bindsym $mod+Down exec /bin/change_layout.sh laptop
+bindsym $mod+Shift+Up exec /bin/change_layout.sh home-dock
+bindsym $mod+Shift+Down exec /bin/change_layout.sh laptop
 
 # Wallpaper
 exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.jpg
