@@ -30,7 +30,7 @@ unset rc
 export EDITOR='vi'
 export VISUAL='vi'
 
-export TERMINAL='urxvt'
+export TERMINAL='alacritty'
 
 . "$HOME/.cargo/env"
 
