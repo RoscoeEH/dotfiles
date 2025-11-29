@@ -283,3 +283,9 @@ mode "power" {
      bindsym Escape mode "default"
 }
 
+# Right click
+input type:touchpad {
+    click_method clickfinger
+    tap enabled
+}
+
