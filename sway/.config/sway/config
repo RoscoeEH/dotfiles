@@ -14,8 +14,8 @@ font pango:FiraCode 8
 exec --no-startup-id dex-autostart --autostart --environment sway
 
 exec swayidle -w \
-    timeout 300 'swaylock -f -i ~/System_Images/screensaver.png' \
-    timeout 600 'swaymsg "output * dpms off"' \
+    # timeout 300 'swaylock -f -i ~/System_Images/screensaver.png' \
+    # timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -f -i ~/System_Images/screensaver.png'
 
