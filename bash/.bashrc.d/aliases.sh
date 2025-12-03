@@ -35,3 +35,5 @@ alias jfoff="sudo systemctl stop jellyfin; pkill -RTMIN+5 i3blocks"
 
 alias setaudio="pactl set-default-sink"
 alias getaudio="~/Tools/audio-info.sh"
+
+alias sshsync="rsync -avh --progress --partial --checksum"
