@@ -58,7 +58,7 @@ mode "media" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+p mode "media"
+bindsym $mod+m mode "media"
 
 
 
@@ -247,6 +247,9 @@ output DP-11 resolution 1920x1080 position 0 0
 output DP-9 resolution 1920x1080 position 1920 0
 bindsym $mod+Shift+Up exec "swaymsg output eDP-1 enable"
 bindsym $mod+Shift+Down exec "swaymsg output eDP-1 disable"
+
+workspace 1 output DP-11
+workspace 2 output DP-9
 
 
 # Wallpaper
