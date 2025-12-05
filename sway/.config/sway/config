@@ -294,3 +294,4 @@ input type:touchpad {
     tap enabled
 }
 
+bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
