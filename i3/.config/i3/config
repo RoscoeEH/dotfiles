@@ -304,4 +304,3 @@ mode "connect" {
 }
 
 bindsym $mod+c mode "connect"
-
