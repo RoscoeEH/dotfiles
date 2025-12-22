@@ -14,10 +14,8 @@ font pango:FiraCode 8
 exec --no-startup-id dex-autostart --autostart --environment sway
 
 exec swayidle -w \
-    timeout 300 'swaylock -f -i ~/System_Images/screensaver.png' \
-    timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -i ~/System_Images/screensaver.png'
+    before-sleep 'swaylock -f -i ~/System_Images/screensaver.png' \
+    lock 'swaylock -f -i ~/System_Images/screensaver.png'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -295,3 +293,5 @@ input type:touchpad {
 }
 
 bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
+
+exec swaymsg input "2362:628:PIXA3854:00_093A:0274_Touchpad" pointer_accel 0.3
