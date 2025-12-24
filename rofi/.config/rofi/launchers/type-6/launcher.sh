@@ -15,5 +15,6 @@ theme='style-4'
 
 ## Run
 rofi \
+    -modi "drun,window,filebrowser" \
     -show drun \
     -theme ${dir}/${theme}.rasi
