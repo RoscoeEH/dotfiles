@@ -294,4 +294,7 @@ input type:touchpad {
 
 bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
 
-exec swaymsg input "2362:628:PIXA3854:00_093A:0274_Touchpad" pointer_accel 0.3
+input type:touchpad {
+    tap disabled
+    pointer_accel 0.3
+}
