@@ -6,7 +6,7 @@ signal=5
 
 [hidden]
 label=Scratchpad:
-command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.window != null and .floating_nodes == [] and .nodes == [] and .floating == \"user_on\")] | length"'
+command=/bin/bash -c 'swaymsg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
 interval=3600
 signal=2
 
