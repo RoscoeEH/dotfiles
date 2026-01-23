@@ -23,6 +23,7 @@
 ;; Load homescreen
 (load (concat CONFIG_PATH "homescreen.el"))
 
-
+;; Load abbrev
+(load (concat CONFIG_PATH "abbrev-list.el"))
 
 ;;; init.el ends here
