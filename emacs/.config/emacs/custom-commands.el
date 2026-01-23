@@ -536,4 +536,7 @@
 
   (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward))
 
+
+(define-key evil-normal-state-map (kbd ":") 'execute-extended-command)
+(define-key evil-visual-state-map (kbd ":") 'execute-extended-command)
 ;;; custum-commands.el ends here
