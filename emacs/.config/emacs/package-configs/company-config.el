@@ -33,8 +33,8 @@
   (setq-default company-backends '(company-dabbrev))
 
   ;; Configure dabbrev backend to strictly limit to the current buffer
-  (setq company-dabbrev-other-buffers nil) ; Disable searching other buffers
-  (setq company-dabbrev-code-other-buffers nil) ; Disable in code mode as well
+  ;; (setq company-dabbrev-other-buffers nil) ; Disable searching other buffers
+  ;; (setq company-dabbrev-code-other-buffers nil) ; Disable in code mode as well
   
   ;; Case-sensitive matching
   (setq company-dabbrev-ignore-case nil)     ; Case-sensitive search; change this to have fuzzy case searching
