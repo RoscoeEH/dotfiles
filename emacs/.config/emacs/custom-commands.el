@@ -497,8 +497,8 @@
       (term-paste)
     (yank)))
 
-(global-set-key (kbd "C-c v") 'universal-paste)
-(global-set-key (kbd "C-c c") 'kill-ring-save)
+(global-set-key (kbd "C-S-v") 'universal-paste)
+(global-set-key (kbd "C-S-c") 'kill-ring-save)
 
 
 ;; Allow to type greek easily
