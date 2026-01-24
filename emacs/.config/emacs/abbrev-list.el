@@ -7,8 +7,13 @@
 
 (define-abbrev-table 'rust-mode-abbrev-table
   '(("pln" "println!")
-    ("rbe" "->Result<(), Box<dyn Error>>")
+    ("rbe" "-> Result<(), Box<dyn Error>>")
     ("devmode" "cfg!(debug_assertions)")))
 
+(define-abbrev-table 'emacs-lisp-mode-abbrev-table
+  '(("dk" "define-key")
+    ("enm" "evil-normal-state-map")
+    ("eim" "evil-insert-state-map")
+    ("evm" "evil-visual-state-map")))
 
 (setq save-abbrevs 'silently)
