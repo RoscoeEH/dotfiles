@@ -87,6 +87,6 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
 (setq evil-insert-state-cursor '("green" bar))
 (setq evil-visual-state-cursor '("red" box))
 
-
+(setq evil-want-minibuffer t)
 
 ;;; evil-config.el ends here
