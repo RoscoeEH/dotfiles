@@ -315,42 +315,40 @@
   (evil-normal-state)
   (evil-visual-restore))
 
-;; Custom compile command
-(defun improved-compile-command ()
-    "Set `compile-command` dynamically based on the major mode."
-    (interactive)
-    (let* ((file-path (buffer-file-name))
-           (cmd (cond
-                ((and (eq major-mode 'python-mode) file-path)
-                 (format "python3 %s" (file-name-nondirectory file-path)))
-                ((eq major-mode 'rust-mode)
-                 ;; For Rust, cd to project root first
-                 (format "cd %s && cargo build"
-                         (locate-dominating-file default-directory "Cargo.toml")))
-                ((eq major-mode 'tuareg-mode)
-                 (format "cd %s && make"
-                         (locate-dominating-file default-directory "Makefile")))
-                ((or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-                 "make")
-                (t "make"))))
-        (when cmd
-          (setq-local compile-command cmd))))
 
+(defun improved-set-compile-command ()
+  "Set `compile-command` if it is not already set."
+  (let* ((file-path (buffer-file-name))
+         (cmd
+          (cond
+           ((and (eq major-mode 'python-mode) file-path)
+            (format "python3 %s" (file-name-nondirectory file-path)))
 
-(add-hook 'python-mode-hook #'improved-compile-command)
-(add-hook 'python-ts-mode-hook #'improved-compile-command)
-(add-hook 'rust-mode-hook #'improved-compile-command)
-(add-hook 'tuareg-mode-hook #'improved-compile-command)
-(add-hook 'c-mode-hook #'improved-compile-command)
-(add-hook 'c++-mode-hook #'improved-compile-command)
+           ((eq major-mode 'rust-mode)
+            (format "cd %s && cargo build"
+                    (locate-dominating-file default-directory "Cargo.toml")))
 
+           ((eq major-mode 'tuareg-mode)
+            (format "cd %s && make"
+                    (locate-dominating-file default-directory "Makefile")))
 
+           ((and (eq major-mode 'scad-mode) file-path)
+            (format "openscad %s" (file-name-nondirectory file-path)))
 
-;; Remove from find-file-hook as it might be too early
-(remove-hook 'find-file-hook #'improved-compile-command)
+           ((or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+            "make")
 
-;; Set the default compile-command to nil to ensure our function takes effect
-(setq-default compile-command nil)
+           (t "make"))))
+    (when (and cmd (not compile-command))
+      (setq compile-command cmd))))
+
+(defun compile-dwim ()
+  "Update compile command dynamically by filetype."
+  (interactive)
+  (setq compile-command nil)
+  (improved-set-compile-command)
+  (let ((current-prefix-arg '(4)))
+    (call-interactively #'compile)))
 
 
 ;; Unbind M-c from capitalize-word
@@ -362,10 +360,10 @@
 
 
 ;; new commands for compile and recompile
-(global-set-key (kbd "M-c c") 'compile)
+(global-set-key (kbd "M-c c") 'compile-dwim)
 (global-set-key (kbd "M-c m") 'recompile)
 
-(defalias 'c 'compile)
+(defalias 'c 'compile-dwim)
 (defalias 'm 'recompile)
 
 (global-set-key (kbd "M-c ;") 'next-error-no-select)
