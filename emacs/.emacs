@@ -16,8 +16,9 @@
                 evil-collection evil-snipe exec-path-from-shell exwm
                 flycheck-rust goto-last-change key-chord lsp-mode
                 magit markdown-mode merlin minesweeper ocamlformat
-                opam-switch-mode origami pandoc-mode pdf-tools
-                rainbow-delimiters rust-mode tuareg vertico vterm)))
+                opam-switch-mode openscad-mode origami pandoc-mode
+                pdf-tools rainbow-delimiters rust-mode scad-mode
+                tuareg vertico vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
