@@ -60,6 +60,8 @@
 
 ;; remove tool bar
 (tool-bar-mode -1)
+(menu-bar-mode -1)
+
 
 (global-display-line-numbers-mode t)  ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative) ;; Set relative line numbers
