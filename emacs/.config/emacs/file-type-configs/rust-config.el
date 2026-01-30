@@ -9,6 +9,9 @@
   :ensure t
   :hook (rust-mode . rust-enable-format-on-save))
 
+(use-package toml-mode
+  :ensure t)
+
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

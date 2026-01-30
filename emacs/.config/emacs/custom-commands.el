@@ -324,7 +324,7 @@
            ((and (eq major-mode 'python-mode) file-path)
             (format "python3 %s" (file-name-nondirectory file-path)))
 
-           ((eq major-mode 'rust-mode)
+           ((or (eq major-mode 'rust-mode) (eq major-mode 'toml-mode))
             (format "cd %s && cargo build"
                     (locate-dominating-file default-directory "Cargo.toml")))
 
