@@ -278,10 +278,10 @@ bindsym $mod+f exec alacritty -e ranger
 bindsym $mod+Shift+p mode "power"
 
 mode "power" {
-     bindsym s exec systemctl suspend, mode "default"
-     bindsym r exec systemctl reboot, mode "default"
-     bindsym o exec systemctl poweroff, mode "default"
-     bindsym l exec swaylock -f -i ~/System_Images/screensaver.png, mode "default"
+     bindsym s exec "swaymsg output eDP-1 enable"; exec systemctl suspend, mode "default"
+     bindsym r exec "swaymsg output eDP-1 enable"; exec systemctl reboot, mode "default"
+     bindsym o exec "swaymsg output eDP-1 enable"; exec systemctl poweroff, mode "default"
+     bindsym l exec "swaymsg output eDP-1 enable"; exec swaylock -f -i ~/System_Images/screensaver.png, mode "default"
 
      bindsym Escape mode "default"
 }
