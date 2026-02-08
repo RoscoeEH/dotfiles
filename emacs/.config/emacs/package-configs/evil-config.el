@@ -89,4 +89,7 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
 
 (setq evil-want-minibuffer t)
 
+
+(evil-set-initial-state 'comint-mode 'normal)
+
 ;;; evil-config.el ends here
