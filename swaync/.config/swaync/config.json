@@ -1,0 +1,12 @@
+{
+  "css": "/home/roscoe/.config/swaync/style.css",
+  "widgets": [
+    "title",
+    "dnd",
+    "notifications"
+  ],
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "top"
+}
