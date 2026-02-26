@@ -13,6 +13,10 @@
   (when (file-directory-p dir)
     (add-to-list 'load-path dir)))
 
+(setq frame-resize-pixelwise t)
+(set-frame-parameter nil 'alpha-background 80)
+(add-to-list 'default-frame-alist '(alpha-background . 80))
+
 
 (custom-set-variables ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,6 +41,9 @@
 (setq mac-option-modifier 'meta
       mac-option-key-is-meta t
       mac-command-key-is-meta nil)
+
+
+
 
 ;; Performance changes
 ;; Non-interactive shell loading

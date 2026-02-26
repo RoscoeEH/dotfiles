@@ -179,6 +179,19 @@
 
 (define-key evil-visual-state-map (kbd "SPC <") ' wrap-with-angle-brackets)
 
+(defun wrap-with-triple-ticks ()
+"Wrap selected text with triple tick marks."
+(interactive)
+(let ((start (region-beginning))
+        (end (region-end)))
+    (goto-char end)
+    (insert "```")
+    (goto-char start)
+    (insert "```")
+    (evil-normal-state)))
+
+;; Bind it to SPC ' in visual mode
+(define-key evil-visual-state-map (kbd "SPC `") 'wrap-with-triple-ticks)
 
 (defun remove-wrapping-delimiters ()
   (interactive)
