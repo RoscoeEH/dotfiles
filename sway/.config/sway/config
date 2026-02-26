@@ -79,7 +79,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Backlight
 bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
 
-bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 i3blocks && sleep 5 && pkill -RTMIN+4 i3blocks
+bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 waybar && sleep 5 && pkill -RTMIN+4 waybar
 
 #interactive screenshot by pressing printscreen
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot_$(date +%F_%T).png
@@ -87,7 +87,7 @@ bindsym $mod+Print exec grim ~/Pictures/screenshot_$(date +%F_%T).png
 bindsym $mod+Shift+Print exec grim -g "$(swaymsg -t get_tree | jq '.. | select(.focused==true).rect | "\(.x),\(.y) \(.width)x\(.height)"' -r)" ~/Pictures/screenshot_$(date +%F_%T).png
 
 # toggle vpn
-bindsym $mod+Shift+v exec --no-startup-id ~/Tools/toggle-vpn.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+3 i3blocks
+bindsym $mod+Shift+v exec --no-startup-id ~/Tools/toggle-vpn.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+3 waybar
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -172,7 +172,6 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+o workspace next
-bindsym $mod+n exec --no-startup-id i3-open-next-ws --focus
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
@@ -185,9 +184,8 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
-bindsym $mod+Shift+n exec --no-startup-id i3-open-next-ws --move
-bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
-bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
+bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 waybar
+bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 waybar
 
 # reload the configuration file
 bindsym $mod+Shift+r reload
@@ -228,17 +226,18 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        position top
-        status_command i3blocks
-        tray_output primary
-    colors {
-        background #000000
-        statusline #29b533
-        separator  #875e2f
-    }
-}
+# bar {
+#         position top
+#         status_command i3blocks
+#         tray_output primary
+#     colors {
+#         background #000000
+#         statusline #29b533
+#         separator  #875e2f
+#     }
+# }
 
+exec waybar
 
 # Configure laptop + dock monitors
 output DP-11 resolution 1920x1080 position 0 0

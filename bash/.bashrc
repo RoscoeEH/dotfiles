@@ -34,3 +34,5 @@ export TERMINAL='alacritty'
 
 . "$HOME/.cargo/env"
 
+
+

@@ -1,0 +1,94 @@
+[{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "custom/jellyfin",
+    "custom/scratchpad"
+  ],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "pulseaudio",
+    "network#eth",
+    "network#wifi",
+    "custom/vpn",
+    "battery"
+  ],
+
+  // Jellyfin
+  "custom/jellyfin": {
+  "format": "Jellyfin: {}",
+  "exec": "bash -c 'systemctl is-active --quiet jellyfin 2>/dev/null && echo Active'",
+  "interval": 60,
+  "signal": 5
+  },
+
+
+  // Scratchpad
+  "custom/scratchpad": {
+    "format": " {}",
+    "exec": "bash -c 'swaymsg -t get_tree | jq \"[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \\\"none\\\")] | length\"'",
+    "interval": 5,
+    "signal": 2
+  },
+
+  // Mode indicator
+  "sway/mode": {
+    "format": "MODE: {}"
+  },
+
+  // Volume
+  "pulseaudio": {
+    "format": " {volume}%",        // speaker icon
+    "format-muted": " MUTE",       // muted speaker icon
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+
+  // Ethernet
+  "network#eth": {
+    "interface": "eth0",
+    "format": " {ipaddr}",         // Ethernet cable / plug icon
+    "format-disconnected": " N/A", // disconnected Ethernet icon
+    "interval": 60
+  },
+
+  // WiFi
+  "network#wifi": {
+    "interface": "wlp1s0",
+    "format": " {essid}",          // WiFi symbol
+    "format-disconnected": "睊 APM",  // disconnected WiFi symbol
+    "on-click": "nmcli radio wifi toggle",
+    "interval": 15,
+    "signal": 4
+  },
+
+  // VPN
+  "custom/vpn": {
+  "format": " {}",
+  "exec": "bash -c 'status=$(nordvpn status 2>/dev/null); if echo \"$status\" | grep -q Connected; then echo \"$status\" | grep \"City:\" | cut -d: -f2- | xargs; else echo Disconnected; fi'",
+  "interval": 5,
+  "signal": 3
+  },
+
+  // Battery
+  "battery": {
+    "bat": "BAT1",
+    "interval": 30,
+    "format": " {capacity}%",          // battery full icon
+    "format-charging": " {capacity}%", // lightning bolt while charging
+    "format-discharging": " {capacity}%", // battery half icon
+    "format-plugged": " {capacity}%",  // plug icon
+    "format-full": " FULL"
+  },
+
+  // Clock
+  "clock": {
+    "format": "{:%A %m-%d-%Y %H:%M %Z}",
+    "interval": 10
+  }
+}]
