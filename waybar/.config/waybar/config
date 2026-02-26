@@ -44,25 +44,24 @@
 
   // Volume
   "pulseaudio": {
-    "format": " {volume}%",        // speaker icon
-    "format-muted": " MUTE",       // muted speaker icon
+    "format": " {volume}%",
+    "format-muted": " MUTE",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   },
 
   // Ethernet
   "network#eth": {
     "interface": "eth0",
-    "format": " {ipaddr}",         // Ethernet cable / plug icon
-    "format-disconnected": " N/A", // disconnected Ethernet icon
+    "format": " {ipaddr}",
+    "format-disconnected": "",
     "interval": 60
   },
 
   // WiFi
   "network#wifi": {
     "interface": "wlp1s0",
-    "format": " {essid}",          // WiFi symbol
-    "format-disconnected": "睊 APM",  // disconnected WiFi symbol
-    "on-click": "nmcli radio wifi toggle",
+    "format": " {essid}",
+    "format-disconnected": "睊 APM",
     "interval": 15,
     "signal": 4
   },
@@ -79,10 +78,10 @@
   "battery": {
     "bat": "BAT1",
     "interval": 30,
-    "format": " {capacity}%",          // battery full icon
-    "format-charging": " {capacity}%", // lightning bolt while charging
-    "format-discharging": " {capacity}%", // battery half icon
-    "format-plugged": " {capacity}%",  // plug icon
+    "format": " {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-discharging": " {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-full": " FULL"
   },
 
