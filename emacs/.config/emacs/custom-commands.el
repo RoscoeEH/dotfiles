@@ -45,14 +45,14 @@
 
 ;; File navigation commands
 (defun jump-next-function-def ()
-    "Jump to the beginning of the next function definition."
-    (interactive)
-    (beginning-of-defun -1))
+  "Jump to the beginning of the next function definition."
+  (interactive)
+  (beginning-of-defun -1))
 
 (defun jump-previous-function-def ()
-    "Jump to the beginning of the previous function definition."
-    (interactive)
-    (beginning-of-defun 1))
+  "Jump to the beginning of the previous function definition."
+  (interactive)
+  (beginning-of-defun 1))
 
 (define-key evil-normal-state-map (kbd "}") 'jump-next-function-def)
 (define-key evil-normal-state-map (kbd "{") 'jump-previous-function-def)
@@ -60,12 +60,12 @@
 (define-key evil-visual-state-map (kbd "{") 'jump-previous-function-def)
 
 (defun backward-sexp-adjusted ()
-    "Jump backward to the matching opening delimiter.
+  "Jump backward to the matching opening delimiter.
     If the character under point is a closing delimiter, move one char right first."
-    (interactive)
-    (when (member (char-after) '(?\) ?\] ?\}))
-        (forward-char 1))
-    (backward-sexp))
+  (interactive)
+  (when (member (char-after) '(?\) ?\] ?\}))
+    (forward-char 1))
+  (backward-sexp))
 
 
 (define-key evil-normal-state-map (kbd "]]") 'forward-sexp)
@@ -76,25 +76,25 @@
 
 ;; grep command bindings
 (global-set-key (kbd "M-g g")
-  (lambda ()
-    (interactive)
-    (let ((search-command (read-from-minibuffer "Run grep: " "rg -nH ")))
-      (grep (concat search-command " | sed 's/\\(.*\\):\\([0-9]*\\)/\\1:\\2/'")))))
+                (lambda ()
+                  (interactive)
+                  (let ((search-command (read-from-minibuffer "Run grep: " "rg -nH ")))
+                    (grep (concat search-command " | sed 's/\\(.*\\):\\([0-9]*\\)/\\1:\\2/'")))))
 
 (global-set-key (kbd "M-g d")
-  (lambda ()
-    (interactive)
-    (let ((dir (read-directory-name "Search in directory: ")))
-      (grep (concat "rg -nH " (read-from-minibuffer "Enter rg command: ") " " dir
-                    " | sed 's/\\(.*\\):\\([0-9]*\\)/\\1:\\2/'")))))
+                (lambda ()
+                  (interactive)
+                  (let ((dir (read-directory-name "Search in directory: ")))
+                    (grep (concat "rg -nH " (read-from-minibuffer "Enter rg command: ") " " dir
+                                  " | sed 's/\\(.*\\):\\([0-9]*\\)/\\1:\\2/'")))))
 
 (global-set-key (kbd "M-g f") 'consult-find)
 
 ;; Function to wrap selected text in parentheses
 (defun wrap-with-parens ()
-"Wrap selected text with parentheses."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with parentheses."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert ")")
@@ -107,9 +107,9 @@
 
 ;; Function to wrap selected text in square brackets
 (defun wrap-with-square-brackets ()
-"Wrap selected text with square brackets."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with square brackets."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert "]")
@@ -122,9 +122,9 @@
 
 ;; Function to wrap selected text in curly braces
 (defun wrap-with-curly-braces ()
-"Wrap selected text with curly braces."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with curly braces."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert "}")
@@ -137,9 +137,9 @@
 
 ;; Function to wrap selected text in double quotes
 (defun wrap-with-double-quotes ()
-"Wrap selected text with double quotes."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with double quotes."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert "\"")
@@ -152,9 +152,9 @@
 
 ;; Function to wrap selected text in single quotes
 (defun wrap-with-single-quotes ()
-"Wrap selected text with single quotes."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with single quotes."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert "'")
@@ -167,9 +167,9 @@
 
 ;; Function to wrap selected text in single quotes
 (defun wrap-with-angle-brackets ()
-"Wrap selected text with single quotes."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with single quotes."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert ">")
@@ -180,9 +180,9 @@
 (define-key evil-visual-state-map (kbd "SPC <") ' wrap-with-angle-brackets)
 
 (defun wrap-with-triple-ticks ()
-"Wrap selected text with triple tick marks."
-(interactive)
-(let ((start (region-beginning))
+  "Wrap selected text with triple tick marks."
+  (interactive)
+  (let ((start (region-beginning))
         (end (region-end)))
     (goto-char end)
     (insert "```")
@@ -217,19 +217,19 @@
 
 ;; Make visual mode 'd' delete without yanking
 (define-key evil-visual-state-map (kbd "d") (lambda ()
-                                            (interactive)
-                                            (evil-delete (region-beginning) (region-end) nil ?_)))
+                                              (interactive)
+                                              (evil-delete (region-beginning) (region-end) nil ?_)))
 
 ;; Make visual mode 'p' and 'P' delete selection without yanking and then paste
 (define-key evil-visual-state-map (kbd "p") (lambda ()
-                                            (interactive)
-                                            (evil-delete (region-beginning) (region-end) nil ?_)
-                                            (evil-paste-after 1)))
+                                              (interactive)
+                                              (evil-delete (region-beginning) (region-end) nil ?_)
+                                              (evil-paste-after 1)))
 
 (define-key evil-visual-state-map (kbd "P") (lambda ()
-                                            (interactive)
-                                            (evil-delete (region-beginning) (region-end) nil ?_)
-                                            (evil-paste-before 1)))
+                                              (interactive)
+                                              (evil-delete (region-beginning) (region-end) nil ?_)
+                                              (evil-paste-before 1)))
 
 
 ;; Window management bindings with auto-balencing and window switching
@@ -270,20 +270,20 @@
 ;; Case change commands
 
 (defun upcase-single-letter ()
-    "Convert the character at point to uppercase."
-    (interactive)
-    (let ((char (char-after)))
+  "Convert the character at point to uppercase."
+  (interactive)
+  (let ((char (char-after)))
     (when char
-        (save-excursion
+      (save-excursion
         (delete-char 1)
         (insert (upcase char))))))
 
 (defun downcase-single-letter ()
-    "Convert the character at point to lowercase."
-    (interactive)
-    (let ((char (char-after)))
+  "Convert the character at point to lowercase."
+  (interactive)
+  (let ((char (char-after)))
     (when char
-        (save-excursion
+      (save-excursion
         (delete-char 1)
         (insert (downcase char))))))
 
@@ -295,17 +295,17 @@
 
 ;; Delete char and enter insert mode
 (define-key evil-normal-state-map (kbd "q") (lambda ()
-                                            (interactive)
-                                            (delete-char 1)
-                                            (evil-insert-state)))
+                                              (interactive)
+                                              (delete-char 1)
+                                              (evil-insert-state)))
 
 
 ;; Skip eol chars on evil-end-of-line
 (defun evil-end-of-line-non-whitespace ()
-    "Move to the last character before the newline, ignoring trailing whitespace."
-    (interactive)
-    (move-end-of-line 1)
-    (skip-chars-backward " \t"))
+  "Move to the last character before the newline, ignoring trailing whitespace."
+  (interactive)
+  (move-end-of-line 1)
+  (skip-chars-backward " \t"))
 
 (define-key evil-normal-state-map (kbd "$") 'evil-end-of-line-non-whitespace)
 (define-key evil-visual-state-map (kbd "$") 'evil-end-of-line-non-whitespace)
@@ -328,30 +328,62 @@
   (evil-normal-state)
   (evil-visual-restore))
 
+(defun find-compile-command-file ()
+  "Search upward for .emacs-compile file.
+Returns the file path if found, or nil if stopped by .git, home, or root."
+  (let ((dir default-directory)
+        (home (expand-file-name "~")))
+    (catch 'found
+      (while dir
+        ;; Check for .emacs-compile
+        (let ((compile-file (expand-file-name ".emacs-compile" dir)))
+          (when (file-exists-p compile-file)
+            (throw 'found compile-file)))
+        ;; Stop on .git
+        (when (file-exists-p (expand-file-name ".git" dir))
+          (throw 'found nil))
+        ;; Stop on home
+        (when (or (string= (directory-file-name dir) home)
+                  (< (length dir) (length home)))
+          (throw 'found nil))
+        ;; Move up
+        (setq dir (file-name-directory (directory-file-name dir))))
+      nil)))
+
+(defun get-custom-compile-command ()
+  "Get compile command from .emacs-compile file if it exists.
+Returns the command string, or nil if not found."
+  (let ((compile-file (find-compile-command-file)))
+    (when compile-file
+      (with-temp-buffer
+        (insert-file-contents compile-file)
+        (string-trim (buffer-string))))))
 
 (defun improved-set-compile-command ()
   "Set `compile-command` if it is not already set."
   (let* ((file-path (buffer-file-name))
          (cmd
-          (cond
-           ((and (eq major-mode 'python-mode) file-path)
-            (format "python3 %s" (file-name-nondirectory file-path)))
+          (or
+           (get-custom-compile-command)
+           (cond
+            ((and (eq major-mode 'python-mode) file-path)
+             (format "python3 %s" (file-name-nondirectory file-path)))
 
-           ((or (eq major-mode 'rust-mode) (eq major-mode 'toml-mode))
-            (format "cd %s && cargo build"
-                    (locate-dominating-file default-directory "Cargo.toml")))
+            ((or (eq major-mode 'rust-mode) (eq major-mode 'toml-mode))
+             (format "cd %s && cargo build"
+                     (locate-dominating-file default-directory "Cargo.toml")))
 
-           ((eq major-mode 'tuareg-mode)
-            (format "cd %s && make"
-                    (locate-dominating-file default-directory "Makefile")))
+            ((eq major-mode 'tuareg-mode)
+             (format "cd %s && make"
+                     (locate-dominating-file default-directory "Makefile")))
 
-           ((and (eq major-mode 'scad-mode) file-path)
-            (format "openscad %s" (file-name-nondirectory file-path)))
+            ((and (eq major-mode 'scad-mode) file-path)
+             (format "openscad %s" (file-name-nondirectory file-path)))
 
-           ((or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-            "make")
+            ((or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+             "make")
 
-           (t "make"))))
+            (t "make")))))
     (when (and cmd (not compile-command))
       (setq compile-command cmd))))
 
@@ -360,8 +392,7 @@
   (interactive)
   (setq compile-command nil)
   (improved-set-compile-command)
-  (let ((current-prefix-arg '(4)))
-    (call-interactively #'compile)))
+  (call-interactively #'compile))
 
 
 ;; Unbind M-c from capitalize-word
@@ -391,8 +422,8 @@
 
 ;; dired mode helpfuls
 (with-eval-after-load 'dired
-    (define-key dired-mode-map [mouse-1] 'dired-single-buffer)
-    (define-key dired-mode-map [mouse-2] 'dired-single-buffer))
+  (define-key dired-mode-map [mouse-1] 'dired-single-buffer)
+  (define-key dired-mode-map [mouse-2] 'dired-single-buffer))
 
 ;; Define M-b as a prefix key
 (define-prefix-command 'bookmark-prefix-map)
@@ -492,6 +523,7 @@
 
   (define-key evil-normal-state-map (kbd "C-z") 'undo)
   (define-key evil-visual-state-map (kbd "C-z") 'undo)
+  (define-key evil-insert-state-map (kbd "C-z") 'undo)
 
   (define-key evil-normal-state-map (kbd "C-f") 'isearch-forward)
   (define-key evil-visual-state-map (kbd "C-f") 'isearch-forward)
