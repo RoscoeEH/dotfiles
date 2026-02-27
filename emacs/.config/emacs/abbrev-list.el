@@ -12,8 +12,8 @@
 
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table
   '(("dk" "define-key")
-    ("enm" "evil-normal-state-map")
-    ("eim" "evil-insert-state-map")
-    ("evm" "evil-visual-state-map")))
+    ("ensm" "evil-normal-state-map")
+    ("eism" "evil-insert-state-map")
+    ("evsm" "evil-visual-state-map")))
 
 (setq save-abbrevs 'silently)
