@@ -79,6 +79,15 @@ window#waybar {
     color: #8bd450;
 }
 
+#battery.warning {
+    color: #ff8d5c;
+}
+
+#battery.critical {
+    color: #ff5c5c;
+}
+
+
 #pulseaudio {
     color: #c792ea;
 }
