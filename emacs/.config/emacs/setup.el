@@ -1,11 +1,11 @@
 ;;; setup.el starts here
 
 (require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("gnu"   . "https://elpa.gnu.org/packages/")
-                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 (package-initialize)
-
 
 ;; for some reason emacs was not loading a bunch of packages so this is my fix
 (add-to-list 'load-path ELPA_PATH)
@@ -23,9 +23,28 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("e410458d3e769c33e0865971deb6e8422457fad02bf51f7862fa180ccc42c032" "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850" default))
+   '("e410458d3e769c33e0865971deb6e8422457fad02bf51f7862fa180ccc42c032"
+     "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850"
+     default))
  '(package-selected-packages
-   '(lsp-mode key-chord free-keys aggressive-indent goto-last-change flycheck bm minimap rainbow-delimiters ace-window evil-collection evil magit vterm company ## rust-mode modus-themes)))
+   '(lsp-mode
+     key-chord
+     free-keys
+     aggressive-indent
+     goto-last-change
+     flycheck
+     bm
+     minimap
+     rainbow-delimiters
+     ace-window
+     evil-collection
+     evil
+     magit
+     vterm
+     company
+     ##
+     rust-mode
+     modus-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,11 +57,10 @@
 
 
 (load-theme 'modus-vivendi)
-(setq mac-option-modifier 'meta
-      mac-option-key-is-meta t
-      mac-command-key-is-meta nil)
-
-
+(setq
+ mac-option-modifier 'meta
+ mac-option-key-is-meta t
+ mac-command-key-is-meta nil)
 
 
 ;; Performance changes
@@ -60,9 +78,8 @@
 
 ;; diable garbage collection on start-up
 (setq gc-cons-threshold most-positive-fixnum)
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold (expt 2 23))))
+(add-hook
+ 'emacs-startup-hook (lambda () (setq gc-cons-threshold (expt 2 23))))
 
 
 ;; remove tool bar
@@ -70,13 +87,13 @@
 (menu-bar-mode -1)
 
 
-(global-display-line-numbers-mode t)  ;; Enable line numbers globally
+(global-display-line-numbers-mode t) ;; Enable line numbers globally
 (setq display-line-numbers-type 'relative) ;; Set relative line numbers
 
 
 (electric-pair-mode 1)
 
-; manage tab spacing
+                                        ; manage tab spacing
 (defun convert-tabs-to-spaces ()
   "Convert all tabs to spaces, except in Makefile modes."
   (unless (or (derived-mode-p 'makefile-mode)
@@ -105,10 +122,11 @@
 (setq make-backup-files nil)
 
 ;; visual line wrap in all modes
-(add-hook 'after-change-major-mode-hook
-          (lambda ()
-            (visual-line-mode 1)
-            (setq word-wrap t)))
+(add-hook
+ 'after-change-major-mode-hook
+ (lambda ()
+   (visual-line-mode 1)
+   (setq word-wrap t)))
 
 
 ;; compilation buffer printing
@@ -119,14 +137,15 @@
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region compilation-filter-start (point))))
 
-(add-hook 'compilation-filter-hook #'my-ansi-colorize-compilation-buffer)
+(add-hook
+ 'compilation-filter-hook #'my-ansi-colorize-compilation-buffer)
 (setq ansi-color-for-comint-mode t) ; Enables support for 256-color ANSI
 
 
-(use-package exec-path-from-shell
+(use-package
+  exec-path-from-shell
   :ensure t
-  :config
-  (exec-path-from-shell-initialize))
+  :config (exec-path-from-shell-initialize))
 
 ;; Disable super key
 (setq x-super-keysym nil)
@@ -134,6 +153,13 @@
 ;; SSH setup
 (setq tramp-verbose 10)
 
+;; elisp formatting
+(use-package
+  elisp-autofmt
+  :ensure t
+  :hook (emacs-lisp-mode . elisp-autofmt-mode)
+  :config
+  (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
 
 
 ;;; setup.el ends here

@@ -12,13 +12,10 @@
      "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850"
      default))
  '(package-selected-packages
-   '(ace-window apheleia auctex bm buffer-move company consult dashboard
-                direnv evil-collection evil-snipe exec-path-from-shell
-                exwm flycheck-rust goto-last-change key-chord lsp-mode
-                magit markdown-mode merlin minesweeper ocamlformat
-                opam-switch-mode openscad-mode origami pandoc-mode
-                pdf-tools rainbow-delimiters rust-mode scad-mode
-                toml-mode tuareg vertico vterm)))
+   '(## ace-window aggressive-indent bm company elisp-autofmt evil
+        evil-collection flycheck free-keys goto-last-change key-chord
+        lsp-mode magit minimap modus-themes rainbow-delimiters
+        rust-mode vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
