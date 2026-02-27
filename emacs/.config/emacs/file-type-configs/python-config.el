@@ -7,4 +7,17 @@
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 
+;; Maybe move this?
+(use-package apheleia
+  :ensure t
+  :config
+  (apheleia-global-mode +1))
+
+(with-eval-after-load 'apheleia
+  (setf (alist-get 'ruff-format apheleia-formatters)
+        '("ruff" "format" "-"))
+
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(ruff-format)))
+
 ;;; python-config.el ends here
