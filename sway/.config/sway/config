@@ -26,6 +26,16 @@ input * {
     xkb_options "caps:swapescape"
 }
 
+# GTK dark mode
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+    gsettings set $gnome-schema color-scheme 'prefer-dark'
+}
+exec_always dbus-update-activation-environment --systemd GTK_THEME=Adwaita:dark XDG_CURRENT_DESKTOP=sway
+
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 
