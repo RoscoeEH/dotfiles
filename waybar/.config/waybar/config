@@ -44,11 +44,17 @@
 
   // Volume
   "pulseaudio": {
-    "format": " {volume}%",
-    "format-muted": " MUTE",
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol"
+  "format": "{icon} {volume}%",
+  "format-muted": " MUTE",
+  "format-icons": {
+    "headphone": "",
+    "headset": "",
+    "hands-free": "",
+    "default": ["", ""]
   },
+  "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+  "on-click-right": "pavucontrol"
+},
 
   // Ethernet
   "network#eth": {
