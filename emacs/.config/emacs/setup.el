@@ -122,12 +122,28 @@
 (setq make-backup-files nil)
 
 ;; visual line wrap in all modes
+(use-package adaptive-wrap :ensure t)
+
 (add-hook
  'after-change-major-mode-hook
  (lambda ()
    (visual-line-mode 1)
+   (adaptive-wrap-prefix-mode 1)
    (setq word-wrap t)))
 
+;; Side fringe
+(set-fringe-mode '(16 . 16))
+(setq-default visual-line-fringe-indicators
+              '(left-curly-arrow right-curly-arrow))
+(add-hook
+ 'visual-line-mode-hook
+ (lambda ()
+   (setq-local visual-line-fringe-indicators
+               '(left-curly-arrow right-curly-arrow))
+   (set-window-fringes nil 16 16)))
+
+;; Make the fringe indicators red
+(custom-set-faces '(fringe ((t (:foreground "red" :background nil)))))
 
 ;; compilation buffer printing
 (require 'ansi-color)
@@ -139,7 +155,7 @@
 
 (add-hook
  'compilation-filter-hook #'my-ansi-colorize-compilation-buffer)
-(setq ansi-color-for-comint-mode t) ; Enables support for 256-color ANSI
+(setq ansi-color-for-comint-mode t)
 
 
 (use-package

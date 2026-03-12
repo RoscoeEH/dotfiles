@@ -12,7 +12,7 @@
      "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850"
      default))
  '(package-selected-packages
-   '(## ace-window aggressive-indent bm company elisp-autofmt evil
+   '(## ace-window adaptive-wrap aggressive-indent bm company evil
         evil-collection flycheck free-keys goto-last-change key-chord
         lsp-mode magit minimap modus-themes rainbow-delimiters
         rust-mode vterm)))
