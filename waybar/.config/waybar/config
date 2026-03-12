@@ -67,8 +67,9 @@
   // WiFi
   "network#wifi": {
     "interface": "wlp1s0",
-    "format": " {essid}",
-    "format-disconnected": "睊 APM",
+    "format": "{ifname}",
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-disconnected": "",
     "interval": 15,
     "signal": 4
   },
