@@ -117,19 +117,10 @@
 
 (setq use-short-answers t)
 
-
 ;; Do not store temp files
 (setq make-backup-files nil)
 
-;; visual line wrap in all modes
-(use-package adaptive-wrap :ensure t)
 
-(add-hook
- 'after-change-major-mode-hook
- (lambda ()
-   (visual-line-mode 1)
-   (adaptive-wrap-prefix-mode 1)
-   (setq word-wrap t)))
 
 ;; Side fringe
 (set-fringe-mode '(16 . 16))

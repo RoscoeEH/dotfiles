@@ -36,4 +36,7 @@
 
 (load (concat PACKAGES_PATH "buffer-move-config.el"))
 
+(load (concat PACKAGES_PATH "adaptive-wrap.el"))
+
+
 ;;; package-list.el ends here
