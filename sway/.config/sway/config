@@ -91,10 +91,32 @@ bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
 
 bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 waybar && sleep 5 && pkill -RTMIN+4 waybar
 
-#interactive screenshot by pressing printscreen
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot_$(date +%F_%T).png
-bindsym $mod+Print exec grim ~/Pictures/screenshot_$(date +%F_%T).png
-bindsym $mod+Shift+Print exec grim -g "$(swaymsg -t get_tree | jq '.. | select(.focused==true).rect | "\(.x),\(.y) \(.width)x\(.height)"' -r)" ~/Pictures/screenshot_$(date +%F_%T).png
+# Screenshots
+# area screenshot
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png
+
+# screenshot focused window
+bindsym $mod+Print exec ~/Tools/screenshot-window.sh
+
+# full screen screenshot
+bindsym $mod+Shift+Print exec grim ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png
+
+# Screenshot mode for other keyboards
+mode "screenshot" {
+        bindsym s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png, mode "default"
+
+        bindsym w exec ~/Tools/screenshot-window.sh, mode "default"
+
+        bindsym f exec grim ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png, mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+s mode "default"
+}
+
+bindsym $mod+Shift+s mode "screenshot"
+
+
 
 # toggle vpn
 bindsym $mod+Shift+v exec --no-startup-id ~/Tools/toggle-vpn.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+3 waybar
