@@ -122,19 +122,19 @@
 
 
 
-;; Side fringe
-(set-fringe-mode '(16 . 16))
-(setq-default visual-line-fringe-indicators
-              '(left-curly-arrow right-curly-arrow))
-(add-hook
- 'visual-line-mode-hook
- (lambda ()
-   (setq-local visual-line-fringe-indicators
-               '(left-curly-arrow right-curly-arrow))
-   (set-window-fringes nil 16 16)))
+;; ;; Side fringe
+;; (set-fringe-mode '(16 . 16))
+;; (setq-default visual-line-fringe-indicators
+;;               '(left-curly-arrow right-curly-arrow))
+;; (add-hook
+;;  'visual-line-mode-hook
+;;  (lambda ()
+;;    (setq-local visual-line-fringe-indicators
+;;                '(left-curly-arrow right-curly-arrow))
+;;    (set-window-fringes nil 16 16)))
 
-;; Make the fringe indicators red
-(custom-set-faces '(fringe ((t (:foreground "red" :background nil)))))
+;; ;; Make the fringe indicators red
+;; (custom-set-faces '(fringe ((t (:foreground "red" :background nil)))))
 
 ;; compilation buffer printing
 (require 'ansi-color)
