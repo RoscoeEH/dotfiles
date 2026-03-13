@@ -92,22 +92,17 @@ bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
 bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 waybar && sleep 5 && pkill -RTMIN+4 waybar
 
 # Screenshots
-# area screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png
-
-# screenshot focused window
-bindsym $mod+Print exec ~/Tools/screenshot-window.sh
-
-# full screen screenshot
-bindsym $mod+Shift+Print exec grim ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png
+bindsym Print exec ~/Tools/screenshots/screenshot-selection.sh
+bindsym $mod+Print exec ~/Tools/screenshots/screenshot-window.sh
+bindsym $mod+Shift+Print exec ~/Tools/screenshots/screenshot-screen.sh
 
 # Screenshot mode for other keyboards
 mode "screenshot" {
-        bindsym s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png, mode "default"
+        bindsym s exec ~/Tools/screenshots/screenshot-selection.sh, mode "default"
 
-        bindsym w exec ~/Tools/screenshot-window.sh, mode "default"
+        bindsym w exec ~/Tools/screenshots/screenshot-window.sh, mode "default"
 
-        bindsym f exec grim ~/Pictures/Screenshots/screenshot_$(date +%F_%T).png, mode "default"
+        bindsym f exec ~/Tools/screenshots/screenshot-screen.sh, mode "default"
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
