@@ -16,6 +16,7 @@ window#waybar {
 #mode,
 #custom-jellyfin,
 #custom-scratchpad,
+#custom-notifications,
 #pulseaudio,
 #network,
 #custom-vpn,
@@ -102,4 +103,16 @@ window#waybar {
 
 #custom-jellyfin {
     color: #e06c75;
+}
+
+#custom-scratchpad {
+    color: #89ddff;
+}
+
+#custom-notifications {
+    color: #c3e88d;
+}
+
+#custom-notifications.dnd {
+    color: #ff5c5c;
 }

@@ -7,7 +7,8 @@
     "sway/workspaces",
     "sway/mode",
     "custom/jellyfin",
-    "custom/scratchpad"
+    "custom/scratchpad",
+    "custom/notifications"
   ],
 
   "modules-center": ["clock"],
@@ -35,6 +36,14 @@
     "exec": "bash -c 'swaymsg -t get_tree | jq \"[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \\\"none\\\")] | length\"'",
     "interval": 5,
     "signal": 2
+  },
+
+  // Notfications
+  "custom/notifications": {
+    "format": " {}",
+    "exec": "~/.config/waybar/customs/notification-status.sh",
+    "return-type": "json",
+    "interval": 30,
   },
 
   // Mode indicator
@@ -77,7 +86,7 @@
   // VPN
   "custom/vpn": {
   "format": " {}",
-  "exec": "bash -c 'status=$(nordvpn status 2>/dev/null); if echo \"$status\" | grep -q Connected; then echo \"$status\" | grep \"City:\" | cut -d: -f2- | xargs; else echo Disconnected; fi'",
+  "exec": "bash -c '~/.config/waybar/customs/vpn-status.sh'",
   "interval": 5,
   "signal": 3
   },
