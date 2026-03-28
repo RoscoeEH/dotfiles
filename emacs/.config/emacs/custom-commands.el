@@ -540,4 +540,16 @@ Returns the command string, or nil if not found."
 
 (define-key evil-normal-state-map (kbd ":") 'execute-extended-command)
 (define-key evil-visual-state-map (kbd ":") 'execute-extended-command)
+
+
+(defun open-external-terminal ()
+  "Open a native terminal"
+  (interactive)
+  (let ((current-dir (or (file-name-directory (buffer-file-name)) 
+                         default-directory)))
+    (call-process "alacritty" nil 0 nil 
+                  "--working-directory" (expand-file-name current-dir))))
+
+(global-set-key (kbd "C-x c") 'open-external-terminal)
+
 ;;; custum-commands.el ends here
