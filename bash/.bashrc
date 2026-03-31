@@ -5,8 +5,6 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-eval "$(direnv hook bash)"   # or `zsh` if using zsh
-
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -31,8 +29,4 @@ export EDITOR='vi'
 export VISUAL='vi'
 
 export TERMINAL='alacritty'
-
-. "$HOME/.cargo/env"
-
-
 

@@ -6,7 +6,6 @@
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
-    "custom/jellyfin",
     "custom/scratchpad",
     "custom/notifications"
   ],
@@ -17,18 +16,8 @@
     "pulseaudio",
     "network#eth",
     "network#wifi",
-    "custom/vpn",
     "battery"
   ],
-
-  // Jellyfin
-  "custom/jellyfin": {
-  "format": "Jellyfin: {}",
-  "exec": "bash -c 'systemctl is-active --quiet jellyfin 2>/dev/null && echo Active'",
-  "interval": 60,
-  "signal": 5
-  },
-
 
   // Scratchpad
   "custom/scratchpad": {
@@ -75,7 +64,7 @@
 
   // WiFi
   "network#wifi": {
-    "interface": "wlp1s0",
+    "interface": "wlp0s20f3",
     "format": "{ifname}",
     "format-wifi": " {essid} ({signalStrength}%)",
     "format-disconnected": "",
@@ -83,17 +72,9 @@
     "signal": 4
   },
 
-  // VPN
-  "custom/vpn": {
-  "format": " {}",
-  "exec": "bash -c '~/.config/waybar/customs/vpn-status.sh'",
-  "interval": 5,
-  "signal": 3
-  },
-
   // Battery
   "battery": {
-    "bat": "BAT1",
+    "bat": "BAT0",
     "interval": 60,
     "states": {
         "warning": 30,

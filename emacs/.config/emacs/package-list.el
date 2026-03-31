@@ -28,8 +28,6 @@
 
 (load (concat PACKAGES_PATH "epa-config.el"))
 
-(load (concat PACKAGES_PATH "origami-config.el"))
-
 (load (concat PACKAGES_PATH "consult-config.el"))
 
 (load (concat PACKAGES_PATH "org-config.el"))

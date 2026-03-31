@@ -13,6 +13,7 @@
   (when (file-directory-p dir)
     (add-to-list 'load-path dir)))
 
+;; transparent
 (setq frame-resize-pixelwise t)
 (set-frame-parameter nil 'alpha-background 80)
 (add-to-list 'default-frame-alist '(alpha-background . 80))

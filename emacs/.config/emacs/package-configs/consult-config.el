@@ -10,9 +10,6 @@
 (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize))
 
-(setq merlin-command "/Users/roscoeelings-haynie/.opam/4.13.1/bin/ocamlmerlin")
-
-
 (defun ocaml-imenu-setup ()
     (setq imenu-generic-expression
             '(
@@ -29,8 +26,6 @@
             ("Classes" "^class[[:space:]]+\\([a-zA-Z0-9_]+\\)" 1))))
 
 
-
-(add-hook 'tuareg-mode-hook 'ocaml-imenu-setup)
 
 (global-set-key (kbd "M-g c") 'consult-ripgrep)
 
