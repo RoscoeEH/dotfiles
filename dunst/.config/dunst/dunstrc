@@ -1,0 +1,47 @@
+[global]
+monitor = 0
+follow = mouse
+origin = top-right
+offset = 10x40
+width = 320
+height = 200
+scale = 0
+notification_limit = 5
+
+font = monospace 10
+line_height = 0
+markup = full
+
+format = "<b>%s</b>\n%b"
+alignment = left
+vertical_alignment = center
+
+show_age_threshold = 60
+word_wrap = yes
+ellipsize = middle
+
+ignore_newline = no
+stack_duplicates = true
+hide_duplicate_count = false
+history_length = 100
+
+corner_radius = 6
+frame_width = 2
+separator_height = 2
+
+idle_threshold = 120
+
+[urgency_low]
+timeout = 3
+background = "#222222"
+foreground = "#888888"
+
+[urgency_normal]
+timeout = 5
+background = "#285577"
+foreground = "#ffffff"
+
+[urgency_critical]
+timeout = 0
+background = "#900000"
+foreground = "#ffffff"

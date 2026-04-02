@@ -1,14 +1,13 @@
-[jf-local]
-label=Jellyfin:
-command=/bin/bash -c 'if systemctl status jellyfin | grep -q "(running)"; then echo "Active"; fi'
-interval=3600
-signal=5
-
 [hidden]
 label=Scratchpad:
 command=/bin/bash -c 'swaymsg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
 interval=3600
 signal=2
+
+[notifications]
+label=Notifications:
+command=~/.config/i3blocks/notification-status.sh
+interval=2
 
 [volume]
 label=Vol:
@@ -26,13 +25,6 @@ label=WiFi:
 command=/bin/bash -c 'if nmcli radio wifi | grep -q disabled; then echo "APM"; else ssid=$(nmcli -t -f active,ssid dev wifi | grep "^yes:" | cut -d: -f2); if [ -n "$ssid" ]; then echo "$ssid"; else echo "Not connected"; fi; fi'
 interval=15
 signal=4
-
-[vpn]
-label=VPN:
-command=/bin/bash -c "status=\$(nordvpn status | grep '^Status:' | awk '{print \$2}'); if [ \"\$status\" = 'Connected' ]; then city=\$(nordvpn status | grep '^City:' | cut -d':' -f2 | xargs); echo \"\$city\"; else if ip link show wg0 >/dev/null 2>&1 && ip -o link show wg0 | grep -q 'UP'; then echo 'WireGuard'; else echo 'Disconnected'; fi; fi"
-interval=15
-signal=3
-
 
 [battery]
 command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging") s="CHR"; else if($1=="Discharging") s="DCR"; else if($1=="Not charging") s="NCR"; else s=$1; print "Batt: " s " " $2}'

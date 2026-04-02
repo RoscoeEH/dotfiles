@@ -28,5 +28,7 @@ unset rc
 export EDITOR='vi'
 export VISUAL='vi'
 
-export TERMINAL='alacritty'
+export TERMINAL='urxvt'
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+# ssh-add -l | grep -q "btq_github_ssh" || ssh-add ~/.ssh/btq_github_ssh

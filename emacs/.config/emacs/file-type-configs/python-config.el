@@ -11,13 +11,16 @@
 (use-package apheleia
   :ensure t
   :config
-  (apheleia-global-mode +1))
+  (apheleia-global-mode +1)
+  (setf (alist-get 'python-mode apheleia-mode-alist) nil)
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) nil))
 
-(with-eval-after-load 'apheleia
-  (setf (alist-get 'ruff-format apheleia-formatters)
-        '("ruff" "format" "-"))
+;; Commented out to not cause massive changes to repos
+;; (with-eval-after-load 'apheleia
+;;   (setf (alist-get 'ruff-format apheleia-formatters)
+;;         '("ruff" "format" "-"))
 
-  (setf (alist-get 'python-mode apheleia-mode-alist)
-        '(ruff-format)))
+;;   (setf (alist-get 'python-mode apheleia-mode-alist)
+;;         '(ruff-format)))
 
 ;;; python-config.el ends here

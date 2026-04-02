@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:FiraCode 8
 
 # This font is widely insalled, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -35,8 +35,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -t -i ~/S
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Start autohotkey
-exec --no-startup-id autokey-gtk &
+# swap caps lock and escape
+exec_always --no-startup-id setxkbmap -option caps:swapescape
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -68,7 +68,7 @@ mode "media" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+p mode "media"
+bindsym $mod+m mode "media"
 
 
 
@@ -89,17 +89,29 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Backlight
-bindsym XF86AudioMedia exec --no-startup-id ~/Tools/toggle-backlight.sh
+bindsym XF86Favorites exec --no-startup-id ~/Tools/toggle-backlight.sh
 
 bindsym XF86RFKill exec --no-startup-id ~/Tools/airplane-mode.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+4 i3blocks && sleep 5 && pkill -RTMIN+4 i3blocks
 
-#interactive screenshot by pressing printscreen
-bindsym Print exec --no-startup-id /bin/screenshot.sh -a --interactive
-bindsym $mod+Print exec --no-startup-id /bin/screenshotTo.sh
-bindsym $mod+Shift+Print exec --no-startup-id /bin/screenshot.sh -w
+# Screenshots
+bindsym Print exec ~/Tools/screenshots/screenshot-selection.sh
+bindsym $mod+Print exec ~/Tools/screenshots/screenshot-window.sh
+bindsym $mod+Shift+Print exec ~/Tools/screenshots/screenshot-screen.sh
 
-# toggle vpn
-bindsym $mod+Shift+v exec --no-startup-id ~/Tools/toggle-vpn.sh; exec --no-startup-id sleep 1 && pkill -RTMIN+3 i3blocks
+# Screenshot mode for other keyboards
+mode "screenshot" {
+        bindsym s exec ~/Tools/screenshots/screenshot-selection.sh, mode "default"
+
+        bindsym w exec ~/Tools/screenshots/screenshot-window.sh, mode "default"
+
+        bindsym f exec ~/Tools/screenshots/screenshot-screen.sh, mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+s mode "default"
+}
+
+bindsym $mod+s mode "screenshot"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -136,12 +148,8 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in horizontal orientation
-bindsym $mod+s split h
-
-# split in vertical orientation
-bindsym $mod+d split v
-
+# toggle orientation
+bindsym $mod+d split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+a fullscreen toggle
@@ -160,7 +168,6 @@ bindsym $mod+Shift+space floating toggle
 
 # focus the child container
 #bindsym $mod+d focus child
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -172,7 +179,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -185,7 +191,7 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+o workspace next
-bindsym $mod+n exec --no-startup-id i3-open-next-ws --focus
+bindsym $mod+i workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
@@ -198,7 +204,8 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
-bindsym $mod+Shift+n exec --no-startup-id i3-open-next-ws --move
+bindsym $mod+Shift+i move container to workspace prev; workspace prev
+
 bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
 bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
 
@@ -245,7 +252,7 @@ bar {
         tray_output primary
     colors {
         background #000000   # dark purple/blue
-        statusline #29b533   # text color
+        statusline #5a8ffa   # text color
         separator  #875e2f
     }
 }
@@ -253,18 +260,27 @@ bar {
 font pango:FiraCode 10
 
 # Configure laptop + dock monitors
-exec --no-startup-id autorandr --change --default laptop
-bindsym $mod+Shift+Up exec /bin/change_layout.sh home-dock
-bindsym $mod+Shift+Down exec /bin/change_layout.sh laptop
+exec_always --no-startup-id autorandr --change --default laptop
+
+# Monitor profiles mode
+mode "monitors" {
+    bindsym 1 exec --no-startup-id autorandr --load laptop, mode "default"
+    bindsym 2 exec --no-startup-id autorandr --load home, mode "default"
+    bindsym 3 exec --no-startup-id autorandr --load work, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+m mode "monitors"
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.jpg
+exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.png
 
 # Open Emacs without the annoying warning
-bindsym $mod+e exec "emacs-lucid"
+bindsym $mod+e exec "emacs"
 
-bindsym $mod+b exec --no-startup-id glide
-bindsym $mod+Shift+b exec --no-startup-id glide --private-window
+bindsym $mod+b exec --no-startup-id brave-browser
 
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
@@ -293,14 +309,17 @@ mode "power" {
      bindsym Escape mode "default"
 }
 
+# Notifications
+exec_always --no-startup-id dunst
 
-mode "connect" {
-        bindsym w exec --no-startup-id urxvt -e "nmtui"; mode "default"
-        bindsym b exec --no-startup-id "blueman-manager"; mode "default"
+bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+exec slack --start-in-tray
+exec thunderbird --start-in-tray
 
-bindsym $mod+c mode "connect"
+
+bindsym $mod+n exec --no-startup-id urxvt -e sh -c "~/.config/i3blocks/notification-history.sh | less"
+
+bindsym $mod+Shift+n exec --no-startup-id dunstctl history-clear
+
+# TODO: Monitor

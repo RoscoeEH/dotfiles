@@ -14,9 +14,9 @@
     (add-to-list 'load-path dir)))
 
 ;; transparent
-(setq frame-resize-pixelwise t)
-(set-frame-parameter nil 'alpha-background 80)
-(add-to-list 'default-frame-alist '(alpha-background . 80))
+;; (setq frame-resize-pixelwise t)
+;; (set-frame-parameter nil 'alpha-background 80)
+;; (add-to-list 'default-frame-alist '(alpha-background . 80))
 
 
 (custom-set-variables ;; custom-set-variables was added by Custom.
