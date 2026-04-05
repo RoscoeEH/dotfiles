@@ -1,6 +1,6 @@
 [hidden]
 label=Scratchpad:
-command=/bin/bash -c 'swaymsg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
+command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
 interval=3600
 signal=2
 
@@ -22,7 +22,7 @@ interval=60
 
 [wlp1s0]
 label=WiFi:
-command=/bin/bash -c 'if nmcli radio wifi | grep -q disabled; then echo "APM"; else ssid=$(nmcli -t -f active,ssid dev wifi | grep "^yes:" | cut -d: -f2); if [ -n "$ssid" ]; then echo "$ssid"; else echo "Not connected"; fi; fi'
+command=/home/roscoe/.dotfiles/i3blocks/.config/i3blocks/wifi-status.sh
 interval=15
 signal=4
 
@@ -31,5 +31,5 @@ command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging"
 interval=60
 
 [time]
-command=date '+%A %m-%d-%Y %H:%M %Z'
+command=date '+%a %m-%d-%Y %H:%M %Z'
 interval=10

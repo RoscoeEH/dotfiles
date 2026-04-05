@@ -232,7 +232,7 @@ How much to adjust it is decided by `adaptive-wrap-extra-indent'."
    (adaptive-wrap-prefix-mode 1)
    (setq word-wrap t)))
 
-(setq adaptive-wrap-prefix-color "#592c2c")
+(setq adaptive-wrap-prefix-color "#322c59")
 (setq adaptive-wrap-extra-indent 1)
 
 (provide 'adaptive-wrap)

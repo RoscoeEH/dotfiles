@@ -1,3 +1,7 @@
+! Update with ```xrdb -merge ~/.Xresources```
+
+URxvt.perl-lib: /usr/lib/urxvt/perl/
+
 ! URxvt appearance & clipboard bindings
 URxvt.font: xft:FiraCode:size=13
 URxvt.scrollBar: false
@@ -6,32 +10,34 @@ URxvt.keyboard-select.clipboard: 1
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 URxvt.keysym.M-v: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 
+
 ! Transparency
-URxvt.transparent: true
+URxvt.transparent: false
 URxvt.shading: 30
 
-urxvt*termName: rxvt
+URxvt.termName: rxvt-unicode-256color
+URxvt.foreground: #f4f2f9
+URxvt.background: #07040d
 
-urxvt*foreground: white
-urxvt*background: black
-*color0:  #2E3436
-*color1:  #a40000
-*color2:  #4E9A06
-*color3:  #C4A000
-! WiFi background
-*color4:  #171A30
-*color5:  #75507B
-*color6:  #ce5c00
-*color7:  #babdb9
-*color8:  #555753
-*color9:  #EF2929
-*color10: #33D63E
-*color11: #FCE94F
-*color12: #3A74f2
-*color13: #AD7FA8
-*color14: #fcaf3e
-*color15: #EEEEEC
-
+URxvt.color0:  #2E3436
+URxvt.color1:  #a40000
+URxvt.color2:  #4E9A06
+URxvt.color3:  #C4A000
+URxvt.color4:  #171A30
+URxvt.color5:  #75507B
+URxvt.color6:  #ce5c00
+URxvt.color7:  #babdb9
+URxvt.color8:  #555753
+URxvt.color9:  #EF2929
+URxvt.color10: #33D63E
+URxvt.color11: #FCE94F
+URxvt.color12: #3A74f2
+URxvt.color13: #AD7FA8
+URxvt.color14: #fcaf3e
+URxvt.color15: #EEEEEC

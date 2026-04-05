@@ -249,7 +249,7 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3blocks
-        tray_output primary
+        tray_output none
     colors {
         background #000000   # dark purple/blue
         statusline #5a8ffa   # text color
@@ -285,12 +285,12 @@ bindsym $mod+b exec --no-startup-id brave-browser
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
 
-# i3-gaps configuration
-gaps inner 10
-gaps outer 5
+# # i3-gaps configuration
+# gaps inner 10
+# gaps outer 5
 
-bindsym $mod+Shift+plus gaps inner all plus 5
-bindsym $mod+Shift+minus gaps inner all minus 5
+# bindsym $mod+Shift+plus gaps inner all plus 5
+# bindsym $mod+Shift+minus gaps inner all minus 5
 bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
 # Added ranger as a file manager

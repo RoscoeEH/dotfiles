@@ -547,7 +547,7 @@ Returns the command string, or nil if not found."
   (interactive)
   (let ((current-dir (or (file-name-directory (buffer-file-name)) 
                          default-directory)))
-    (call-process "alacritty" nil 0 nil 
+    (call-process "urxvt" nil 0 nil 
                   "--working-directory" (expand-file-name current-dir))))
 
 (global-set-key (kbd "C-x c") 'open-external-terminal)
