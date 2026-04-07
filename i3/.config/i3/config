@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraCode 8
+font pango:FiraCode 10
 
 # This font is widely insalled, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -29,7 +29,13 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
+# Keep xss-lock so the session still locks before suspend, including undocked
+# lid-close suspend. Idle blanking is disabled below so open/docked use does
+# not trigger an automatic lock.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -t -i ~/System_Images/screensaver.png -c 000000
+
+# Disable X11 screen blanking and DPMS so xss-lock does not fire on idle.
+exec --no-startup-id xset s off -dpms
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -194,17 +200,18 @@ bindsym $mod+o workspace next
 bindsym $mod+i workspace prev
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4; workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5; workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6; workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
 bindsym $mod+Shift+i move container to workspace prev; workspace prev
+
 
 bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
 bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
@@ -260,13 +267,13 @@ bar {
 font pango:FiraCode 10
 
 # Configure laptop + dock monitors
-exec_always --no-startup-id autorandr --change --default laptop
+# exec_always --no-startup-id autorandr --change --default laptop
 
 # Monitor profiles mode
 mode "monitors" {
-    bindsym 1 exec --no-startup-id autorandr --load laptop, mode "default"
-    bindsym 2 exec --no-startup-id autorandr --load home, mode "default"
-    bindsym 3 exec --no-startup-id autorandr --load work, mode "default"
+    bindsym l exec --no-startup-id autorandr --load laptop, mode "default"
+    bindsym h exec --no-startup-id autorandr --load home, mode "default"
+    bindsym w exec --no-startup-id autorandr --load work, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -280,7 +287,7 @@ exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.png
 # Open Emacs without the annoying warning
 bindsym $mod+e exec "emacs"
 
-bindsym $mod+b exec --no-startup-id brave-browser
+bindsym $mod+b exec --no-startup-id ~/Tools/browser-launch.sh
 
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
@@ -314,12 +321,13 @@ exec_always --no-startup-id dunst
 
 bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
 
+# Keep tray-launched apps on their dedicated workspaces.
+assign [class="Slack"] $ws8
+assign [class="Thunderbird Mail"] $ws9
+
 exec slack --start-in-tray
 exec thunderbird --start-in-tray
 
-
-bindsym $mod+n exec --no-startup-id urxvt -e sh -c "~/.config/i3blocks/notification-history.sh | less"
+bindsym $mod+n exec --no-startup-id urxvt -e bash -c "~/Documents/Toolchains/dunst-nctui/dunst-nctui"
 
 bindsym $mod+Shift+n exec --no-startup-id dunstctl history-clear
-
-# TODO: Monitor

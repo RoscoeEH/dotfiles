@@ -17,7 +17,7 @@ signal=1
 
 [eth0]
 label=Eth:
-command=/bin/bash -c "ip -4 addr show eth0 | grep 'inet ' | awk '{print \$2}' | cut -d/ -f1"
+command=/bin/bash -c "ip -4 addr show eth0 | grep 'inet ' | awk '{print \\$2}' | cut -d/ -f1"
 interval=60
 
 [wlp1s0]
@@ -31,5 +31,6 @@ command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging"
 interval=60
 
 [time]
-command=date '+%a %m-%d-%Y %H:%M %Z'
+command=date '+%a %m-%d-%y %H:%M %Z'
 interval=10
+color=#1ce81c

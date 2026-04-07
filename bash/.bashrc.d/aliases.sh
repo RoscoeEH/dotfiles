@@ -11,8 +11,8 @@ alias cc='cargo clean'
 
 alias shredd='shred -uz --iterations=10'
 
-alias zip='tar -czf'
-alias extract='tar -xvf'
+alias tarzip='tar -czf'
+alias untar='tar -xvf'
 
 alias mnt='udisksctl mount -b'
 alias eject='~/Tools/eject-drive.sh'
@@ -27,3 +27,5 @@ alias setaudio="pactl set-default-sink"
 alias getaudio="~/Tools/audio-info.sh"
 
 alias r="ranger"
+
+alias sshclone="~/Tools/ssh-clone.sh"
