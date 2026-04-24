@@ -110,14 +110,14 @@ mode "screenshot" {
 
         bindsym w exec ~/Tools/screenshots/screenshot-window.sh, mode "default"
 
-        bindsym f exec ~/Tools/screenshots/screenshot-screen.sh, mode "default"
+        bindsym a exec ~/Tools/screenshots/screenshot-screen.sh, mode "default"
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+Shift+s mode "default"
 }
 
-bindsym $mod+s mode "screenshot"
+bindsym $mod+Shift+s mode "screenshot"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -127,7 +127,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+q kill
@@ -164,6 +164,13 @@ bindsym $mod+a fullscreen toggle
 bindsym $mod+period layout stacking
 bindsym $mod+comma layout tabbed
 bindsym $mod+slash layout splith
+
+default_border pixel 3
+default_floating_border pixel 3
+
+# Syntax: client.<class> <border> <background> <text> <indicator> <child_border>
+# Change only the <indicator> color (the 4th color)
+client.focused #4c7899 #285577 #ffffff #32a846 #4c7899
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -212,6 +219,17 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+o move container to workspace next; workspace next
 bindsym $mod+Shift+i move container to workspace prev; workspace prev
 
+bindsym $mod+s move workspace to output right
+
+bindsym Control+Shift+1 move container to workspace number $ws1; workspace number $ws1
+bindsym Control+Shift+2 move container to workspace number $ws2; workspace number $ws2
+bindsym Control+Shift+3 move container to workspace number $ws3; workspace number $ws3
+bindsym Control+Shift+4 move container to workspace number $ws4; workspace number $ws4
+bindsym Control+Shift+5 move container to workspace number $ws5; workspace number $ws5
+bindsym Control+Shift+6 move container to workspace number $ws6; workspace number $ws6
+bindsym Control+Shift+7 move container to workspace number $ws7; workspace number $ws7
+bindsym Control+Shift+8 move container to workspace number $ws8; workspace number $ws8
+bindsym Control+Shift+9 move container to workspace number $ws9; workspace number $ws9
 
 bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
 bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
@@ -285,9 +303,10 @@ bindsym $mod+Shift+m mode "monitors"
 exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.png
 
 # Open Emacs without the annoying warning
-bindsym $mod+e exec "emacs"
+bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
 
 bindsym $mod+b exec --no-startup-id ~/Tools/browser-launch.sh
+bindsym $mod+Shift+b exec --no-startup-id brave-browser --incognito
 
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
@@ -321,13 +340,11 @@ exec_always --no-startup-id dunst
 
 bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-id pkill -RTMIN+2 i3blocks; exec --no-startup-id pkill -RTMIN+3 i3blocks; exec --no-startup-id pkill -RTMIN+4 i3blocks; exec --no-startup-id pkill -RTMIN+5 i3blocks
 
-# Keep tray-launched apps on their dedicated workspaces.
-assign [class="Slack"] $ws8
-assign [class="Thunderbird Mail"] $ws9
-
 exec slack --start-in-tray
 exec thunderbird --start-in-tray
 
-bindsym $mod+n exec --no-startup-id urxvt -e bash -c "~/Documents/Toolchains/dunst-nctui/dunst-nctui"
+bindsym $mod+n exec --no-startup-id urxvt -e bash -c "~/Documents/Toolchains/dunst-tui/target/release/dunst-tui"
 
-bindsym $mod+Shift+n exec --no-startup-id dunstctl history-clear
+exec --no-startup-id xrdb -load ~/.Xresources
+
+exec --no-startup-id unclutter -idle 2

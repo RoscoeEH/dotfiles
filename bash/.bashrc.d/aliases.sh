@@ -29,3 +29,11 @@ alias getaudio="~/Tools/audio-info.sh"
 alias r="ranger"
 
 alias sshclone="~/Tools/ssh-clone.sh"
+
+alias tst="~/Tools/toggle-vpn.sh"
+alias ts="tailscale"
+
+alias s="startx"
+
+alias ctxt="cp ~/.config/agents.md .codexrules.md"
+alias ai="cp ~/.config/agents.md .codexrules.md & codex"

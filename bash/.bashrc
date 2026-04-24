@@ -33,5 +33,7 @@ export VISUAL='vim'
 export TERMINAL='urxvt'
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-ssh-add -l | grep -q "btq_github_ssh" || ssh-add ~/.ssh/btq_github_ssh
+
+[[ $- == *i* ]] && ssh-add ~/.ssh/btq_github_ssh >/dev/null 2>&1
+
 export PATH=$HOME/riscv/bin:$PATH

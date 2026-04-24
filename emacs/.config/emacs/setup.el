@@ -55,6 +55,7 @@
 
 ;; Font
 (set-frame-font "Fira Code-13" nil t)
+(add-to-list 'default-frame-alist '(font . "Fira Code-13"))
 
 
 (load-theme 'modus-vivendi)
@@ -169,5 +170,26 @@
   :config
   (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
 
+(use-package openwith
+  :ensure t
+  :config
+  (setq openwith-associations
+        '(("\\.pdf\\'" "start" ("\"\"" file))
+          ("\\.docx?\\'" "start" ("\"\"" file))
+          ("\\.xlsx?\\'" "start" ("\"\"" file))
+          ("\\.pptx?\\'" "start" ("\"\"" file))))
+  (openwith-mode 1))
+
+(setenv "SSH_AUTH_SOCK" "/run/user/1000/ssh-agent.socket")
+
+(setq display-buffer-base-action
+      '((display-buffer-reuse-window
+         display-buffer-pop-up-frame)
+        (reusable-frames . t)))
+
+(use-package frames-only-mode
+  :ensure t
+  :config
+  (frames-only-mode 1))
 
 ;;; setup.el ends here

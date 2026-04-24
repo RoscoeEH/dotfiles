@@ -231,44 +231,34 @@
                                               (evil-delete (region-beginning) (region-end) nil ?_)
                                               (evil-paste-before 1)))
 
-
-;; Window management bindings with auto-balencing and window switching
-(defun split-window-horizontal-dwim ()
-  "Splits the window horizontally then moves to the new window and balences windows."
+(defun i3-spawn-frame-below ()
+  "Tells i3 to split vertically, then creates a new frame without pop-up buffers."
   (interactive)
-  (split-window-horizontally)
-  (other-window 1)
-  (balance-windows))
+  (call-process-shell-command "i3-msg split v" nil 0)
+  (let ((buf-name (buffer-name)))
+    (call-process-shell-command 
+     (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
-(defun split-window-vertical-dwim ()
-  "Splits the window vertically then moves to the new window and balences windows."
+(defun i3-spawn-frame-right ()
+  "Tells i3 to split horizontally, then creates a new frame."
   (interactive)
-  (split-window-vertically)
-  (other-window 1)
-  (balance-windows))
+  (call-process-shell-command "i3-msg split h" nil 0)
+  (let ((buf-name (buffer-name)))
+    (call-process-shell-command 
+     (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
-(defun delete-window-dwim ()
-  "Deletes the current window and balances the windows back to even."
-  (interactive)
-  (delete-window)
-  (balance-windows))
-
-
-
-
-(global-set-key (kbd "C-x s") 'split-window-horizontal-dwim)
-(global-set-key (kbd "C-x d") 'split-window-vertical-dwim) 
-(global-set-key (kbd "C-x f") 'delete-window-dwim)
+(global-set-key (kbd "C-x s") 'i3-spawn-frame-right)
+(global-set-key (kbd "C-x d") 'i3-spawn-frame-below) 
+(global-set-key (kbd "C-x f") 'delete-window)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)
-(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-o") 'other-frame)
 (global-set-key (kbd "M-N") 'make-frame)
-(global-set-key (kbd "M-F") 'other-frame)
+;; (global-set-key (kbd "M-F") 'other-frame)
 (global-set-key (kbd "M-D") 'delete-frame)
 
 
 ;; Case change commands
-
 (defun upcase-single-letter ()
   "Convert the character at point to uppercase."
   (interactive)
@@ -545,12 +535,31 @@ Returns the command string, or nil if not found."
 (defun open-external-terminal ()
   "Open a native terminal"
   (interactive)
-  (let ((current-dir (or (file-name-directory (buffer-file-name)) 
-                         default-directory)))
+  (let ((current-dir (expand-file-name default-directory)))
     (call-process "urxvt" nil 0 nil 
-                  "--working-directory" (expand-file-name current-dir))))
+                  "-cd" current-dir)))
 
 (global-set-key (kbd "C-x c") 'open-external-terminal)
 
 (global-set-key (kbd "C-r") 'revert-buffer)
+
+(global-set-key (kbd "M-C") 'calc)
+
+(defun note (name)
+  "Prompt for a note NAME (defaults to 'notes' if empty), create a markdown file with NAME, date, and time in the path ~/Documents/Notes."
+  (interactive
+   (list (let ((input (read-string "Note name (default: 'notes'): ")))
+           (if (string-empty-p input) "notes" input))))
+  (let* ((base-dir "~/Documents/Notes/")
+         (timestamp (format-time-string "%Y-%m-%d_%H-%M-%S"))
+         (filename (format "%s-%s.md" name timestamp))
+         (full-path (expand-file-name filename base-dir)))
+    ;; Ensure directory exists
+    (unless (file-directory-p base-dir)
+      (make-directory base-dir t))
+    ;; Create and open the file
+    (find-file full-path)
+    ;; Insert a title in Markdown format
+    (insert (format "# %s (%s)\n\n" name (format-time-string "%Y-%m-%d %H:%M")))))
+
 ;;; custum-commands.el ends here

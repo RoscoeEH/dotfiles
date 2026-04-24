@@ -1,13 +1,13 @@
+[notifications]
+label=Notifs:
+command=~/.config/i3blocks/notification-status.sh
+interval=1
+
 [hidden]
-label=Scratchpad:
+label=Min:
 command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
 interval=3600
-signal=2
-
-[notifications]
-label=Notifications:
-command=~/.config/i3blocks/notification-status.sh
-interval=2
+signal=3600
 
 [volume]
 label=Vol:
@@ -15,22 +15,22 @@ command=/bin/bash -c 'if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; the
 interval=3600
 signal=1
 
-[eth0]
-label=Eth:
-command=/bin/bash -c "ip -4 addr show eth0 | grep 'inet ' | awk '{print \\$2}' | cut -d/ -f1"
-interval=60
-
-[wlp1s0]
-label=WiFi:
-command=/home/roscoe/.dotfiles/i3blocks/.config/i3blocks/wifi-status.sh
-interval=15
+[network]
+command=~/.config/i3blocks/network-status.sh
+interval=5
 signal=4
 
+[tailscale]
+label=TS:
+command=~/.config/i3blocks/tailscale-status.sh
+interval=15
+signal=3
+
 [battery]
-command=acpi -b | awk -F', ' '{gsub(/Battery [0-9]+: /,"",$1); if($1=="Charging") s="CHR"; else if($1=="Discharging") s="DCR"; else if($1=="Not charging") s="NCR"; else s=$1; print "Batt: " s " " $2}'
+command=~/.config/i3blocks/battery-status.sh
 interval=60
 
 [time]
 command=date '+%a %m-%d-%y %H:%M %Z'
-interval=10
+interval=30
 color=#1ce81c
