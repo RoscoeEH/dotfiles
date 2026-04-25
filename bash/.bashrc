@@ -27,12 +27,9 @@ fi
 unset rc
 
 # Variables
-export EDITOR='vi'
-export VISUAL='vi'
+export EDITOR='vim'
+export VISUAL='vim'
 
 export TERMINAL='alacritty'
-
-. "$HOME/.cargo/env"
-
 
 

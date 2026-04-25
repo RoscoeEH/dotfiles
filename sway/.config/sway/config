@@ -16,8 +16,9 @@ exec --no-startup-id dex-autostart --autostart --environment sway
 exec --no-startup-id nordvpn c new_york
 
 exec swayidle -w \
-    before-sleep 'swaylock -f -i ~/System_Images/screensaver.png' \
-    lock 'swaylock -f -i ~/System_Images/screensaver.png'
+    timeout 305 'swaylock -f -i ~/System_Images/screensaver.png' \
+    timeout 300 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -299,8 +300,8 @@ exec swaybg -i ~/System_Images/screensaver.jpg -m fill
 # Open Emacs
 bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
 
-bindsym $mod+b exec --no-startup-id glide --gtk-version=4
-bindsym $mod+Shift+b exec --no-startup-id glide --private-window
+bindsym $mod+b exec --no-startup-id firefox --gtk-version=4
+bindsym $mod+Shift+b exec --no-startup-id firefox --private-window
 
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
@@ -325,6 +326,7 @@ mode "power" {
      bindsym r exec "swaymsg output eDP-1 enable"; exec systemctl reboot, mode "default"
      bindsym o exec "swaymsg output eDP-1 enable"; exec systemctl poweroff, mode "default"
      bindsym l exec "swaymsg output eDP-1 enable"; exec swaylock -f -i ~/System_Images/screensaver.png, mode "default"
+     bindsym e exec "swaymsg output eDP-1 enable"; exec swaymsg exit, mode "default"
 
      bindsym Escape mode "default"
 }
@@ -349,3 +351,5 @@ bindsym $mod+n exec swaync-client -t -sw
 exec signal-desktop --start-in-tray
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+bindsym $mod+u exec --no-startup-id ~/Tools/idle-toggle.sh
