@@ -1,4 +1,4 @@
-;;; setup.el starts here
+;; setup.el starts here
 
 (require 'package)
 (setq package-archives
@@ -54,11 +54,11 @@
 
 ;; Font
 (set-frame-font "Fira Code-13" nil t)
-
+(add-to-list 'default-frame-alist '(font . "Fira Code-13"))
 
 (load-theme 'modus-vivendi)
 (setq
- mac-option-modifier 'meta
+ mac-option-modifier 'metas
  mac-option-key-is-meta t
  mac-command-key-is-meta nil)
 
@@ -93,7 +93,7 @@
 
 (electric-pair-mode 1)
 
-                                        ; manage tab spacing
+; manage tab spacing
 (defun convert-tabs-to-spaces ()
   "Convert all tabs to spaces, except in Makefile modes."
   (unless (or (derived-mode-p 'makefile-mode)
@@ -119,7 +119,6 @@
 
 ;; Do not store temp files
 (setq make-backup-files nil)
-
 
 
 ;; ;; Side fringe
@@ -150,9 +149,9 @@
 
 
 (use-package
-  exec-path-from-shell
-  :ensure t
-  :config (exec-path-from-shell-initialize))
+ exec-path-from-shell
+ :ensure t
+ :config (exec-path-from-shell-initialize))
 
 ;; Disable super key
 (setq x-super-keysym nil)
@@ -162,11 +161,21 @@
 
 ;; elisp formatting
 (use-package
-  elisp-autofmt
-  :ensure t
-  :hook (emacs-lisp-mode . elisp-autofmt-mode)
-  :config
-  (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
+ elisp-autofmt
+ :ensure t
+ :hook (emacs-lisp-mode . elisp-autofmt-mode)
+ :config
+ (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
 
+(setenv "SSH_AUTH_SOCK" "/run/user/1000/ssh-agent.socket")
+
+(setq display-buffer-base-action
+      '((display-buffer-reuse-window display-buffer-pop-up-frame)
+        (reusable-frames . t)))
+
+(use-package
+ frames-only-mode
+ :ensure t
+ :hook (server-after-make-frame-hook . frames-only-mode))
 
 ;;; setup.el ends here

@@ -28,7 +28,7 @@
 
 (load (concat PACKAGES_PATH "epa-config.el"))
 
-(load (concat PACKAGES_PATH "origami-config.el"))
+(load (concat PACKAGES_PATH "yafolding-config.el"))
 
 (load (concat PACKAGES_PATH "consult-config.el"))
 

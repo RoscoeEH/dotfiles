@@ -232,16 +232,27 @@
                                               (evil-paste-before 1)))
 
 
-(global-set-key (kbd "C-x s") 'split-window-right)
-(global-set-key (kbd "C-x d") 'split-window-down) 
-(global-set-key (kbd "C-x f") 'delete-window-dwim)
+(defun sway-spawn-frame-below ()
+  "Tells sway to split vertically, then creates a new frame without pop-up buffers."
+  (interactive)
+  (call-process-shell-command "swaymsg split v" nil 0)
+  (make-frame))
+
+(defun sway-spawn-frame-right ()
+  "Tells sway to split horizontally, then creates a new frame."
+  (interactive)
+  (call-process-shell-command "swaymsg split h" nil 0)
+  (make-frame))
+
+(global-set-key (kbd "C-x s") 'sway-spawn-frame-right)
+(global-set-key (kbd "C-x d") 'sway-spawn-frame-below) 
+(global-set-key (kbd "C-x f") 'delete-window)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)
-(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-o") 'other-frame)
 (global-set-key (kbd "M-N") 'make-frame)
-(global-set-key (kbd "M-F") 'other-frame)
+;; (global-set-key (kbd "M-F") 'other-frame)
 (global-set-key (kbd "M-D") 'delete-frame)
-
 
 ;; Case change commands
 

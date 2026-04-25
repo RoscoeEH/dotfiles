@@ -11,11 +11,7 @@
    '("e410458d3e769c33e0865971deb6e8422457fad02bf51f7862fa180ccc42c032"
      "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850"
      default))
- '(package-selected-packages
-   '(## ace-window adaptive-wrap aggressive-indent bm company evil
-        evil-collection flycheck free-keys goto-last-change key-chord
-        lsp-mode magit minimap modus-themes rainbow-delimiters
-        rust-mode vterm)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
