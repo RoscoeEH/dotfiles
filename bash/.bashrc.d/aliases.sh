@@ -18,7 +18,7 @@ alias shredd='shred -uz --iterations=10'
 alias wirein='sudo wg-quick up wg0'
 alias wireout='sudo wg-quick down wg0'
 
-alias zip='tar -czf'
+alias tarzip='tar -czf'
 alias extract='tar -xvf'
 
 alias mnt='udisksctl mount -b'
@@ -30,8 +30,8 @@ alias settimecst="timedatectl set-timezone America/Detroit"
 alias settimemst="timedatectl set-timezone America/Denver"
 alias settimejst="timedatectl set-timezone Asia/Tokyo"
 
-alias jfon="sudo systemctl start jellyfin; pkill -RTMIN+5 waybar"
-alias jfoff="sudo systemctl stop jellyfin; pkill -RTMIN+5 waybar"
+alias jfon="sudo systemctl start jellyfin.service; pkill -RTMIN+5 waybar"
+alias jfoff="sudo systemctl stop jellyfin.service; pkill -RTMIN+5 waybar"
 
 alias setaudio="pactl set-default-sink"
 alias getaudio="~/Tools/audio-info.sh"
@@ -39,3 +39,5 @@ alias getaudio="~/Tools/audio-info.sh"
 alias sshsync="rsync -avh --progress --partial --checksum"
 
 alias r="ranger"
+
+alias s="sway"

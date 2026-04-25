@@ -232,32 +232,8 @@
                                               (evil-paste-before 1)))
 
 
-;; Window management bindings with auto-balencing and window switching
-(defun split-window-horizontal-dwim ()
-  "Splits the window horizontally then moves to the new window and balences windows."
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1)
-  (balance-windows))
-
-(defun split-window-vertical-dwim ()
-  "Splits the window vertically then moves to the new window and balences windows."
-  (interactive)
-  (split-window-vertically)
-  (other-window 1)
-  (balance-windows))
-
-(defun delete-window-dwim ()
-  "Deletes the current window and balances the windows back to even."
-  (interactive)
-  (delete-window)
-  (balance-windows))
-
-
-
-
-(global-set-key (kbd "C-x s") 'split-window-horizontal-dwim)
-(global-set-key (kbd "C-x d") 'split-window-vertical-dwim) 
+(global-set-key (kbd "C-x s") 'split-window-right)
+(global-set-key (kbd "C-x d") 'split-window-down) 
 (global-set-key (kbd "C-x f") 'delete-window-dwim)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)

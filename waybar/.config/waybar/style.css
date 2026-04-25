@@ -1,7 +1,7 @@
 * {
     border: none;
     font-family: "FiraCode Nerd Font", sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     min-height: 0;
 }
 
@@ -9,6 +9,7 @@
 window#waybar {
     background: rgba(20, 20, 20, 0.9);
     color: #e6e6e6;
+    min-height: 12px;
 }
 
 /* Module spacing */
