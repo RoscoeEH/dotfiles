@@ -6,13 +6,13 @@ interval=1
 [hidden]
 label=Min:
 command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
-interval=3600
-signal=3600
+interval=30
+signal=2
 
 [volume]
 label=Vol:
 command=/bin/bash -c 'if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then echo "MUTE"; else pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk "{print \$5}"; fi'
-interval=3600
+interval=5
 signal=1
 
 [network]

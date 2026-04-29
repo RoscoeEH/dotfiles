@@ -47,5 +47,6 @@ background = "#900000"
 foreground = "#ffffff"
 
 [block-tidal]
-    appname = "Tidal"
+    appname = "tidal-hifi"
     skip_display = true
+    history_ignore = true

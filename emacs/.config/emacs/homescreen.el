@@ -28,7 +28,7 @@
           (propertize title 'face '(:foreground "red" :weight bold))))
 
   (setq dashboard-center-content t)
-  (setq dashboard-items '((bookmarks . 12)))
+  (setq dashboard-items '((recents . 12) (bookmarks . 12)))
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
 
 

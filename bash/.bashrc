@@ -37,3 +37,4 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 [[ $- == *i* ]] && ssh-add ~/.ssh/btq_github_ssh >/dev/null 2>&1
 
 export PATH=$HOME/riscv/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"

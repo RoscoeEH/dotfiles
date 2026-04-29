@@ -192,6 +192,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -203,6 +204,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 bindsym $mod+o workspace next
 bindsym $mod+i workspace prev
 
@@ -216,6 +218,7 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+o move container to workspace next; workspace next
 bindsym $mod+Shift+i move container to workspace prev; workspace prev
 
@@ -230,9 +233,14 @@ bindsym Control+Shift+6 move container to workspace number $ws6; workspace numbe
 bindsym Control+Shift+7 move container to workspace number $ws7; workspace number $ws7
 bindsym Control+Shift+8 move container to workspace number $ws8; workspace number $ws8
 bindsym Control+Shift+9 move container to workspace number $ws9; workspace number $ws9
+bindsym Control+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
 bindsym $mod+Down move scratchpad; exec --no-startup-id pkill -RTMIN+2 i3blocks
+bindsym --whole-window --release button10 exec --no-startup-id sh -c 'i3-msg move scratchpad; pkill -RTMIN+2 i3blocks'
+
 bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
+
+bindsym $mod+Shift+n exec --no-startup-id ~/Tools/i3-new-workspace.sh
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -292,6 +300,7 @@ mode "monitors" {
     bindsym l exec --no-startup-id autorandr --load laptop, mode "default"
     bindsym h exec --no-startup-id autorandr --load home, mode "default"
     bindsym w exec --no-startup-id autorandr --load work, mode "default"
+    bindsym m exec --no-startup-id autorandr --load meeting, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -317,7 +326,6 @@ exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --compo
 
 # bindsym $mod+Shift+plus gaps inner all plus 5
 # bindsym $mod+Shift+minus gaps inner all minus 5
-bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
 
 # Added ranger as a file manager
 bindsym $mod+f exec urxvt -e ranger

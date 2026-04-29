@@ -35,5 +35,3 @@ alias ts="tailscale"
 
 alias s="startx"
 
-alias ctxt="cp ~/.config/agents.md .codexrules.md"
-alias ai="cp ~/.config/agents.md .codexrules.md & codex"
