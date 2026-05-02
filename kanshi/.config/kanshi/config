@@ -1,0 +1,31 @@
+output "Dell Inc. DELL S2715H V14F372LAG7L" {
+    mode 1920x1080@60.000
+    position 0,0
+    scale 1
+    transform 270
+    alias $DELL
+}
+
+output "ASUSTek COMPUTER INC VG278 HBLMQS030915" {
+    mode 1920x1080@60.000
+    position 1080,400
+    scale 1
+    alias $ASUS
+}
+
+output "BOE 0x0BCA Unknown" {
+    mode 2256x1504@59.999
+    position 0,0
+    scale 1.1
+    alias $LAPTOP
+}
+
+profile home {
+    output $DELL enable
+    output $ASUS enable
+    output $LAPTOP enable
+}
+
+profile moving {
+    output $LAPTOP enable
+}
