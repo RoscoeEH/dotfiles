@@ -539,4 +539,6 @@ Returns the command string, or nil if not found."
 
 (global-set-key (kbd "C-x c") 'open-external-terminal)
 
+(global-set-key (kbd "M-C") 'calc)
+
 ;;; custum-commands.el ends here
