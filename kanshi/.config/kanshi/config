@@ -23,7 +23,7 @@ output "BOE 0x0BCA Unknown" {
 profile home {
     output $DELL enable
     output $ASUS enable
-    output $LAPTOP enable
+    output $LAPTOP disable
 }
 
 profile moving {

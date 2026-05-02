@@ -352,3 +352,6 @@ bindsym $mod+n exec swaync-client -t -sw
 exec signal-desktop --start-in-tray
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec --no-startup-id kanshi
+bindsym $mod+Shift+m exec --no-startup-id kanshi
