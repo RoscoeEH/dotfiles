@@ -240,7 +240,8 @@ bindsym --whole-window --release button10 exec --no-startup-id sh -c 'i3-msg mov
 
 bindsym $mod+Up scratchpad show, floating disable; exec --no-startup-id pkill -RTMIN+2 i3blocks
 
-bindsym $mod+Shift+n exec --no-startup-id ~/Tools/i3-new-workspace.sh
+bindsym $mod+w exec --no-startup-id ~/Tools/i3-new-workspace.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/Tools/i3-new-workspace.sh move
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

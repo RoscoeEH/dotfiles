@@ -35,3 +35,4 @@ alias ts="tailscale"
 
 alias s="startx"
 
+alias cdr='cd "$(git rev-parse --show-toplevel)"'
