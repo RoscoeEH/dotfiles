@@ -13,7 +13,7 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
-URxvt.keysym.M-v: perl:keyboard-select:activate
+URxvt.keysym.C-space: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 
 
