@@ -64,6 +64,8 @@ mode "media" {
         bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
         bindsym Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
         bindsym Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
+        bindsym Shift+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
+        bindsym Shift+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status; exec --no-startup-id pkill -RTMIN+1 i3blocks
 
         bindsym p exec playerctl play-pause
         bindsym period exec playerctl next
@@ -141,6 +143,9 @@ bindsym $mod+space exec ~/.config/rofi/launchers/type-6/launcher.sh
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+# Fixing focus issues
+focus_on_window_activation focus
+
 # Rofi themes from "https://github.com/adi1090x/rofi"
 # change focus
 bindsym $mod+h focus left
@@ -165,12 +170,12 @@ bindsym $mod+period layout stacking
 bindsym $mod+comma layout tabbed
 bindsym $mod+slash layout splith
 
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 2
+default_floating_border pixel 2
 
 # Syntax: client.<class> <border> <background> <text> <indicator> <child_border>
 # Change only the <indicator> color (the 4th color)
-client.focused #4c7899 #285577 #ffffff #32a846 #4c7899
+client.focused #7b27b8 #285577 #ffffff #a83232 #7b27b8
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
