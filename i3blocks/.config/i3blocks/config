@@ -11,7 +11,7 @@ signal=2
 
 [volume]
 label=Vol:
-command=/bin/bash -c 'if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then echo "MUTE"; else pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk "{print \$5}"; fi'
+command=~/.config/i3blocks/volume-status.sh
 interval=5
 signal=1
 
