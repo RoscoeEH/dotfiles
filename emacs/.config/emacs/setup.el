@@ -192,4 +192,7 @@
   :config
   (frames-only-mode 1))
 
+
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
 ;;; setup.el ends here
