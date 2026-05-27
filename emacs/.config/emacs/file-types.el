@@ -6,5 +6,6 @@
 
 (load (concat FILE_TYPE_PATH "markdown-config.el"))
 (load (concat FILE_TYPE_PATH "latex-config.el"))
+(load (concat FILE_TYPE_PATH "bazel-config.el"))
 
 ;;; file-types.el ends here
