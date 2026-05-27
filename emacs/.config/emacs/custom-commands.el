@@ -539,9 +539,7 @@ Returns the command string, or nil if not found."
     (call-process "urxvt" nil 0 nil 
                   "-cd" current-dir)))
 
-(global-set-key (kbd "C-x c") 'open-external-terminal)
-
-(global-set-key (kbd "C-r") 'revert-buffer)
+(global-set-key (kbd "C-x t t") 'open-external-terminal)
 
 (global-set-key (kbd "M-C") 'calc)
 
