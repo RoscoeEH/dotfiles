@@ -42,7 +42,7 @@ exec --no-startup-id xset s off -dpms
 exec --no-startup-id nm-applet
 
 # swap caps lock and escape
-exec_always --no-startup-id setxkbmap -option caps:swapescape
+# exec_always --no-startup-id sleep 2 && setxkbmap -option caps:swapescape
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -345,6 +345,7 @@ mode "power" {
      bindsym r exec systemctl reboot, mode "default"
      bindsym o exec systemctl poweroff, mode "default"
      bindsym l exec i3lock -t -i ~/System_Images/screensaver.png -c 000000, mode "default"
+     bindsym b exec i3lock -t -c 000000, mode "default"
 
      bindsym Escape mode "default"
 }
