@@ -1,0 +1,59 @@
+#! perl
+use strict;
+use warnings;
+
+sub on_start {
+    my ($self) = @_;
+    warn "open-new-window loaded\n";
+    return ();
+}
+
+sub on_child_start {
+    my ($self, $pid) = @_;
+    $self->{open_new_window_child_pid} = $pid;
+    return ();
+}
+
+sub open_new_window {
+    my ($self) = @_;
+
+    my $pid = $self->{open_new_window_child_pid};
+    my $cwd = $ENV{HOME};
+
+    if (defined $pid && -d "/proc/$pid") {
+        my $candidate = readlink "/proc/$pid/cwd";
+        $cwd = $candidate if defined $candidate && -d $candidate;
+    }
+
+    my $child = fork;
+
+    if (!defined $child) {
+        warn "open-new-window: fork failed: $!\n";
+        return ();
+    }
+
+    if ($child == 0) {
+        chdir $cwd or chdir $ENV{HOME} or exit 1;
+        exec "urxvt";
+        warn "open-new-window: exec urxvt failed: $!\n";
+        exit 1;
+    }
+
+    return ();
+}
+
+sub on_action {
+    my ($self, $action) = @_;
+    warn "open-new-window on_action: $action\n";
+
+    return () unless defined $action && $action eq "open";
+    return open_new_window($self);
+}
+
+sub on_user_command {
+    my ($self, $cmd) = @_;
+    warn "open-new-window on_user_command: $cmd\n";
+
+    return () unless defined $cmd && $cmd eq "open-new-window:open";
+    return open_new_window($self);
+}

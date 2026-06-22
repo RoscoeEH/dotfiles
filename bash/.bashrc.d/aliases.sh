@@ -36,3 +36,9 @@ alias ts="tailscale"
 alias s="startx"
 
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
+
+alias o='~/Tools/mime-open.sh'
+
+alias cdx='codex --ask-for-approval untrusted --model gpt-5.4'
+
+alias primitive='~/Tools/primitive-cmd.sh'

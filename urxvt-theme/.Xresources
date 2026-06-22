@@ -1,14 +1,15 @@
 ! Update with ```xrdb -merge ~/.Xresources```
 
-URxvt.perl-lib: /usr/lib/urxvt/perl/
+URxvt.perl-lib: /usr/lib/urxvt/perl/:/home/roscoe/.urxvt/ext/
 
 ! URxvt appearance & clipboard bindings
 URxvt.font: xft:FiraCode:size=13
 URxvt.scrollBar: false
-URxvt.perl-ext-common: default,clipboard,keyboard-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select,open-new-window
 URxvt.keyboard-select.clipboard: 1
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-n: perl:open-new-window:open
 
 URxvt.iso14755: false
 URxvt.iso14755_52: false

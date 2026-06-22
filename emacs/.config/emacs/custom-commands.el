@@ -247,13 +247,23 @@
     (call-process-shell-command 
      (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
+(defun i3-spawn-frame ()
+  "Creates a new frame from shell to avoid i3 child container managing."
+  (interactive)
+  (let ((buf-name (buffer-name)))
+    (call-process-shell-command 
+     (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
+
 (global-set-key (kbd "C-x s") 'i3-spawn-frame-right)
 (global-set-key (kbd "C-x d") 'i3-spawn-frame-below) 
 (global-set-key (kbd "C-x f") 'delete-window)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)
-(global-set-key (kbd "M-o") 'other-frame)
-(global-set-key (kbd "M-N") 'make-frame)
+(global-set-key (kbd "M-o") 'other-window)
+(with-eval-after-load 'evil
+  (define-key evil-normal-state-map (kbd "C-n") #'i3-spawn-frame)
+  (define-key evil-motion-state-map (kbd "C-n") #'i3-spawn-frame)
+  (define-key evil-visual-state-map (kbd "C-n") #'i3-spawn-frame))
 ;; (global-set-key (kbd "M-F") 'other-frame)
 (global-set-key (kbd "M-D") 'delete-frame)
 
@@ -413,7 +423,8 @@ Returns the command string, or nil if not found."
 ;; dired mode helpfuls
 (with-eval-after-load 'dired
   (define-key dired-mode-map [mouse-1] 'dired-single-buffer)
-  (define-key dired-mode-map [mouse-2] 'dired-single-buffer))
+  (define-key dired-mode-map [mouse-2] 'dired-single-buffer)
+  (define-key dired-mode-map (kbd "p") #'dired-up-directory))
 
 ;; Define M-b as a prefix key
 (define-prefix-command 'bookmark-prefix-map)
@@ -435,6 +446,10 @@ Returns the command string, or nil if not found."
 (with-eval-after-load 'dired
   (evil-define-key 'normal dired-mode-map
     "^" 'dired-kill-subdir))
+
+(with-eval-after-load 'dired
+  (evil-define-key 'normal dired-mode-map
+    (kbd "p") #'dired-up-directory))
 
 ;; Replacement keybinds
 (global-set-key (kbd "C-x r q s") 'query-replace)
@@ -533,11 +548,40 @@ Returns the command string, or nil if not found."
 
 
 (defun open-external-terminal ()
-  "Open a native terminal"
+  "Open a native terminal in the current directory.
+
+For TRAMP SSH buffers, open a local terminal and SSH into the remote host,
+then cd to the remote directory."
   (interactive)
-  (let ((current-dir (expand-file-name default-directory)))
-    (call-process "urxvt" nil 0 nil 
-                  "-cd" current-dir)))
+  (let ((dir default-directory))
+    (if (file-remote-p dir)
+        (let* ((vec (tramp-dissect-file-name dir))
+               (user (tramp-file-name-user vec))
+               (host (tramp-file-name-host vec))
+               (localname (tramp-file-name-localname vec))
+               (target (if user
+                           (format "%s@%s" user host)
+                         host))
+               (remote-dir
+                (cond
+                 ;; TRAMP may give paths like ~/aes_capture_archive/.
+                 ;; Do not quote the ~; use $HOME instead.
+                 ((string= localname "~")
+                  "$HOME")
+                 ((string-prefix-p "~/" localname)
+                  (concat "$HOME/" (shell-quote-argument
+                                    (substring localname 2))))
+                 ;; Absolute paths, or anything else.
+                 (t
+                  (shell-quote-argument localname)))))
+          (call-process
+           "urxvt" nil 0 nil
+           "-e" "ssh" "-t" target
+           (format "cd -- %s; exec ${SHELL:-sh}" remote-dir)))
+      (call-process
+       "urxvt" nil 0 nil
+       "-cd" (expand-file-name dir)))))
+
 
 (global-set-key (kbd "C-x t t") 'open-external-terminal)
 

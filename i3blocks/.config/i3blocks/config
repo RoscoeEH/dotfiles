@@ -5,7 +5,7 @@ interval=1
 
 [hidden]
 label=Min:
-command=/bin/bash -c 'i3-msg -t get_tree | jq "[.. | objects | select(.scratchpad_state != null and .scratchpad_state != \"none\")] | length"'
+command=~/.config/i3blocks/scratchpad-status.sh
 interval=30
 signal=2
 
