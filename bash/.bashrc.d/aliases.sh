@@ -39,6 +39,8 @@ alias cdr='cd "$(git rev-parse --show-toplevel)"'
 
 alias o='~/Tools/mime-open.sh'
 
-alias cdx='codex --ask-for-approval untrusted --model gpt-5.4'
+alias cdx='codex --ask-for-approval untrusted'
 
-alias primitive='~/Tools/primitive-cmd.sh'
+alias prim='~/Tools/primitive-cmd.sh'
+
+alias save='mv ~/Documents/btq-sca/bazel-bin/fpga/cash_aes_capture'

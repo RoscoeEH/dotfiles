@@ -306,7 +306,7 @@ mode "monitors" {
     bindsym l exec --no-startup-id autorandr --load laptop, mode "default"
     bindsym h exec --no-startup-id autorandr --load home, mode "default"
     bindsym w exec --no-startup-id autorandr --load work, mode "default"
-    bindsym m exec --no-startup-id autorandr --load meeting, mode "default"
+    bindsym o exec --no-startup-id autorandr --load off, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -320,7 +320,7 @@ exec --no-startup-id feh --bg-fill ~/System_Images/screensaver.png
 # Open Emacs without the annoying warning
 bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
 
-bindsym $mod+b exec --no-startup-id ~/Tools/browser-launch.sh
+bindsym $mod+b exec --no-startup-id brave-browser
 bindsym $mod+Shift+b exec --no-startup-id brave-browser --incognito
 
 # Keyring

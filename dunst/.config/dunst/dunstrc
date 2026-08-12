@@ -50,3 +50,82 @@ foreground = "#ffffff"
     appname = "tidal-hifi"
     skip_display = true
     history_ignore = true
+
+[slack-channel-normal]
+    appname = "Slack"
+    summary = "New message in *"
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 5
+
+[slack-dm]
+    appname = "Slack"
+    summary = "New message from *"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 5
+
+[slack-mention-roscoe]
+    appname = "Slack"
+    body = "*@roscoe*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-here]
+    appname = "Slack"
+    body = "*@here*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-everyone]
+    appname = "Slack"
+    body = "*@everyone*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-channel]
+    appname = "Slack"
+    body = "*@channel*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-Roscoe]
+    appname = "Slack"
+    body = "*@Roscoe*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-Here]
+    appname = "Slack"
+    body = "*@Here*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-Everyone]
+    appname = "Slack"
+    body = "*@Everyone*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[slack-mention-Channel]
+    appname = "Slack"
+    body = "*@Channel*"
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
