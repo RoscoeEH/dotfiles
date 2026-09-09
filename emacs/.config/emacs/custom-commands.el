@@ -90,6 +90,8 @@
 
 (global-set-key (kbd "M-g f") 'consult-find)
 
+(set-face-attribute 'compilation-info nil :foreground "#00ff00")
+
 ;; Function to wrap selected text in parentheses
 (defun wrap-with-parens ()
   "Wrap selected text with parentheses."
@@ -368,6 +370,9 @@ Returns the command string, or nil if not found."
            (cond
             ((and (eq major-mode 'python-mode) file-path)
              (format "python3 %s" (file-name-nondirectory file-path)))
+
+            ((and (eq major-mode 'sh-mode) file-path)
+             (format "./%s" (file-name-nondirectory file-path)))
 
             ((or (eq major-mode 'rust-mode) (eq major-mode 'toml-mode))
              (format "cd %s && cargo build"

@@ -42,3 +42,7 @@ URxvt.color12: #3A74f2
 URxvt.color13: #AD7FA8
 URxvt.color14: #fcaf3e
 URxvt.color15: #EEEEEC
+
+! Selection / highlighted text
+URxvt.highlightColor: #1c3773
+URxvt.highlightTextColor: #f4f2f9

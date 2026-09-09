@@ -3,3 +3,7 @@ set recolor true
 set recolor-darkcolor "#dcdccc"
 set recolor-lightcolor "#121212"
 set recolor-keephue true
+
+set highlight-color "rgba(35, 35, 35, 0.9)"
+set highlight-fg "#ff007f"
+set font "monospace bold 13"

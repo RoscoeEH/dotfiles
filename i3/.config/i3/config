@@ -306,7 +306,7 @@ mode "monitors" {
     bindsym l exec --no-startup-id autorandr --load laptop, mode "default"
     bindsym h exec --no-startup-id autorandr --load home, mode "default"
     bindsym w exec --no-startup-id autorandr --load work, mode "default"
-    bindsym o exec --no-startup-id autorandr --load off, mode "default"
+    bindsym t exec --no-startup-id autorandr --load tv, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

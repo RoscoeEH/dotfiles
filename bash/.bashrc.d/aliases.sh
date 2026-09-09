@@ -39,8 +39,15 @@ alias cdr='cd "$(git rev-parse --show-toplevel)"'
 
 alias o='~/Tools/mime-open.sh'
 
-alias cdx='codex --ask-for-approval untrusted'
+alias cdx='codex'
 
 alias prim='~/Tools/primitive-cmd.sh'
 
-alias save='mv ~/Documents/btq-sca/bazel-bin/fpga/cash_aes_capture'
+alias saveaes='mv ~/Documents/btq-sca/bazel-bin/fpga/cash_aes_capture'
+alias savemlkem='mv ~/Documents/btq-sca/bazel-bin/fpga/cash_mlkem_capture'
+
+alias gethex='openssl rand -hex'
+
+alias getlines='~/Tools/count-code-lines.sh'
+
+alias popcommit='git reset --soft HEAD~1'

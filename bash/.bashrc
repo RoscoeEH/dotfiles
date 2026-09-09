@@ -30,7 +30,7 @@ unset rc
 export EDITOR='vim'
 export VISUAL='vim'
 
-export TERMINAL='urxvt'
+export TERMINAL='alacritty'
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
@@ -38,3 +38,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export PATH=$HOME/riscv/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/opt/synlig_toolchain/synlig:$PATH"
+
+# opencode
+export PATH=/home/roscoe/.opencode/bin:$PATH
