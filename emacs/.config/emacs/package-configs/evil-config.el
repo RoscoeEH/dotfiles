@@ -71,16 +71,16 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
   (evil-snipe-override-mode 1))
 
 
-  ;; Use Space-s
-  (with-eval-after-load 'evil-snipe
-    (define-key evil-normal-state-map (kbd "SPC s") 'evil-snipe-s)
-    (define-key evil-visual-state-map (kbd "SPC s") 'evil-snipe-s)
-    (define-key evil-normal-state-map (kbd "SPC S") 'evil-snipe-S)
-    (define-key evil-visual-state-map (kbd "SPC S") 'evil-snipe-S))
+;; Use Space-s
+(with-eval-after-load 'evil-snipe
+  (define-key evil-normal-state-map (kbd "SPC s") 'evil-snipe-s)
+  (define-key evil-visual-state-map (kbd "SPC s") 'evil-snipe-s)
+  (define-key evil-normal-state-map (kbd "SPC S") 'evil-snipe-S)
+  (define-key evil-visual-state-map (kbd "SPC S") 'evil-snipe-S))
 
-  ;; Enable wrapping
-  (setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
-  (setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
+;; Enable wrapping
+(setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
+(setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
 
 ;; Optionally change cursor colors by Evil state if using evil-mode
 (setq evil-normal-state-cursor '("hot pink" box))
@@ -91,5 +91,8 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
 
 
 (evil-set-initial-state 'comint-mode 'normal)
+
+;; evil fold commands
+(define-key evil-normal-state-map (kbd "z o") 'evil-open-fold-rec)
 
 ;;; evil-config.el ends here

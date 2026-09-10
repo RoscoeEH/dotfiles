@@ -1,0 +1,9 @@
+[slack-mentions]
+appname = "Slack"
+subject_regexp = "^New message in.*"
+body_regexp = "@(Roscoe|Channel|Here|Everyone|roscoe|channel|here|everyone)\\b"
+
+[slack-dms]
+appname = "Slack"
+subject_regexp = "^New message from.*"
+body_regexp = ".*"

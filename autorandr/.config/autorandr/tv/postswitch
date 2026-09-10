@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh --bg-fill ~/System_Images/screensaver.png
