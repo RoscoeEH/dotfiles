@@ -363,3 +363,5 @@ bindsym $mod+n exec --no-startup-id urxvt -e bash -c "~/Documents/Toolchains/dun
 exec --no-startup-id xrdb -load ~/.Xresources
 
 exec --no-startup-id unclutter -idle 2
+
+bindsym $mod+Shift+slash exec --no-startup-id ~/.local/bin/codex-status-notify

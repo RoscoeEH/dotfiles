@@ -9,6 +9,12 @@ command=~/.config/i3blocks/scratchpad-status.sh
 interval=30
 signal=2
 
+[codex-limit]
+label=5h:
+command=~/.config/i3blocks/chatgpt-limit.sh
+interval=60
+signal=3
+
 [volume]
 label=Vol:
 command=~/.config/i3blocks/volume-status.sh
@@ -20,11 +26,11 @@ command=~/.config/i3blocks/network-status.sh
 interval=5
 signal=4
 
-[tailscale]
-label=TS:
-command=~/.config/i3blocks/tailscale-status.sh
-interval=15
-signal=3
+# [tailscale]
+# label=TS:
+# command=~/.config/i3blocks/tailscale-status.sh
+# interval=15
+# signal=3
 
 [battery]
 command=~/.config/i3blocks/battery-status.sh

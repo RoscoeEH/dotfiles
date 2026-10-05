@@ -50,4 +50,6 @@ alias gethex='openssl rand -hex'
 
 alias getlines='~/Tools/count-code-lines.sh'
 
+alias compare='~/Tools/hash-compare.sh'
+
 alias popcommit='git reset --soft HEAD~1'

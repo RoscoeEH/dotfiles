@@ -30,17 +30,17 @@ and checklists ('- [ ] ')."
           (setq new-prefix (concat indent "- [ ] ")))
          ;; Ordered list with parentheses (e.g., "1)" or "2)")
          ((string-match "^[ \t]*\\([0-9]+\\)[)][ \t]+"
-                         current-line)
+                        current-line)
           (let ((num (string-to-number (match-string 1 current-line))))
             (setq new-prefix (concat indent (number-to-string (1+ num)) ") "))))
          ;; Ordered list with period (e.g., "1." or "2.")
          ((string-match "^[ \t]*\\([0-9]+\\)\\.[ \t]+"
-                         current-line)
+                        current-line)
           (let ((num (string-to-number (match-string 1 current-line))))
             (setq new-prefix (concat indent (number-to-string (1+ num)) ". "))))
          ;; Bullet list (using "-" or "*")
          ((string-match "^[ \t]*\\([-*]\\)\\s-+"
-                         current-line)
+                        current-line)
           (setq new-prefix (concat indent (match-string 1 current-line) " ")))
          ;; Fallback: no prefix.
          (t (setq new-prefix nil)))
@@ -51,15 +51,15 @@ and checklists ('- [ ] ')."
 
 
 (defun markdown-outdent ()
-    "Outdent the current Markdown list item."
-    (interactive)
-    (when (eq major-mode 'markdown-mode)
-      (let* ((current-indent (current-indentation))
-             (cursor-offset (- (current-column) current-indent))
-             (outdent-step 2)
-             (new-indent (max 0 (- current-indent outdent-step))))
-        (indent-line-to new-indent)
-        (move-to-column (+ new-indent cursor-offset)))))
+  "Outdent the current Markdown list item."
+  (interactive)
+  (when (eq major-mode 'markdown-mode)
+    (let* ((current-indent (current-indentation))
+           (cursor-offset (- (current-column) current-indent))
+           (outdent-step 2)
+           (new-indent (max 0 (- current-indent outdent-step))))
+      (indent-line-to new-indent)
+      (move-to-column (+ new-indent cursor-offset)))))
 
 
 (add-hook 'markdown-mode-hook
@@ -122,5 +122,20 @@ Optionally pass EXTRA-ARGS as a list of additional arguments."
 
 (global-set-key (kbd "M-c e h") 'export-markdown-to-html)
 (global-set-key (kbd "M-c e p") 'export-markdown-to-pdf)
+
+(use-package markdown-table-wrap
+  :ensure t)
+
+(use-package markdown-table-wrap-pretty
+  :after markdown-mode
+  :hook (markdown-mode . markdown-table-wrap-pretty-mode)
+  :config
+  (setq markdown-table-wrap-pretty-auto-rewrap-on-resize t
+        markdown-table-wrap-pretty-default-on-major-modes '(markdown-mode gfm-mode)))
+
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "C-c p")
+              #'markdown-table-wrap-pretty-toggle))
+
 
 ;;; markdown-config.el ends here

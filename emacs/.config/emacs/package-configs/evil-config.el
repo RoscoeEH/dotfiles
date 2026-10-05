@@ -67,6 +67,9 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
   :ensure t
   :after evil
   :config
+  (setq evil-snipe-smart-case t
+        evil-snipe-scope 'whole-buffer
+        evil-snipe-repeat-scope 'whole-buffer)
   (evil-snipe-mode 1)
   (evil-snipe-override-mode 1))
 
@@ -79,8 +82,8 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
   (define-key evil-visual-state-map (kbd "SPC S") 'evil-snipe-S))
 
 ;; Enable wrapping
-(setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
-(setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
+;; (setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
+;; (setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
 
 ;; Optionally change cursor colors by Evil state if using evil-mode
 (setq evil-normal-state-cursor '("hot pink" box))

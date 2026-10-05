@@ -1,7 +1,5 @@
 ;;; custom-commands.el starts here
 
-(key-chord-define-global "sd" 'save-buffer)
-
 ;; neighboring files
 (defun next-neighbor-file ()
   "Move to the next non-directory, non-image file in the current directory, wrapping around if needed."
@@ -238,7 +236,7 @@
   (interactive)
   (call-process-shell-command "i3-msg split v" nil 0)
   (let ((buf-name (buffer-name)))
-    (call-process-shell-command 
+    (call-process-shell-command
      (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
 (defun i3-spawn-frame-right ()
@@ -246,18 +244,18 @@
   (interactive)
   (call-process-shell-command "i3-msg split h" nil 0)
   (let ((buf-name (buffer-name)))
-    (call-process-shell-command 
+    (call-process-shell-command
      (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
 (defun i3-spawn-frame ()
   "Creates a new frame from shell to avoid i3 child container managing."
   (interactive)
   (let ((buf-name (buffer-name)))
-    (call-process-shell-command 
+    (call-process-shell-command
      (format "emacsclient -a '' -c -e '(switch-to-buffer \"%s\")'" buf-name) nil 0)))
 
 (global-set-key (kbd "C-x s") 'i3-spawn-frame-right)
-(global-set-key (kbd "C-x d") 'i3-spawn-frame-below) 
+(global-set-key (kbd "C-x d") 'i3-spawn-frame-below)
 (global-set-key (kbd "C-x f") 'delete-window)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)
@@ -609,4 +607,5 @@ then cd to the remote directory."
     ;; Insert a title in Markdown format
     (insert (format "# %s (%s)\n\n" name (format-time-string "%Y-%m-%d %H:%M")))))
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
 ;;; custum-commands.el ends here
