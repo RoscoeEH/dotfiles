@@ -1,4 +1,4 @@
-# .bashrc
+
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -35,4 +35,15 @@ export TERMINAL='alacritty'
 . "$HOME/.cargo/env"
 
 
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
+if echo $XDG_SESSION_TYPE | grep -q "tty"
+then
+    sway
+fi
+
+fastfetch
+export OLLAMA_HOST=100.124.54.119:11434
+
+# opencode
+export PATH=/home/roscoe/.opencode/bin:$PATH

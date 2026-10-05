@@ -14,8 +14,8 @@
     (add-to-list 'load-path dir)))
 
 (setq frame-resize-pixelwise t)
-(set-frame-parameter nil 'alpha-background 80)
-(add-to-list 'default-frame-alist '(alpha-background . 80))
+(set-frame-parameter nil 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 
 (custom-set-variables ;; custom-set-variables was added by Custom.
@@ -74,7 +74,7 @@
 (blink-cursor-mode -1)
 
 ;; Diable auto-updating of files based on the disk as it is not relevant to my use case
-(global-auto-revert-mode -1)
+(global-auto-revert-mode 1)
 
 ;; diable garbage collection on start-up
 (setq gc-cons-threshold most-positive-fixnum)
@@ -93,7 +93,7 @@
 
 (electric-pair-mode 1)
 
-; manage tab spacing
+                                        ; manage tab spacing
 (defun convert-tabs-to-spaces ()
   "Convert all tabs to spaces, except in Makefile modes."
   (unless (or (derived-mode-p 'makefile-mode)
@@ -149,9 +149,9 @@
 
 
 (use-package
- exec-path-from-shell
- :ensure t
- :config (exec-path-from-shell-initialize))
+  exec-path-from-shell
+  :ensure t
+  :config (exec-path-from-shell-initialize))
 
 ;; Disable super key
 (setq x-super-keysym nil)
@@ -161,11 +161,11 @@
 
 ;; elisp formatting
 (use-package
- elisp-autofmt
- :ensure t
- :hook (emacs-lisp-mode . elisp-autofmt-mode)
- :config
- (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
+  elisp-autofmt
+  :ensure t
+  :hook (emacs-lisp-mode . elisp-autofmt-mode)
+  :config
+  (add-hook 'before-save-hook #'elisp-autofmt-buffer nil 'local))
 
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/ssh-agent.socket")
 
@@ -174,8 +174,8 @@
         (reusable-frames . t)))
 
 (use-package
- frames-only-mode
- :ensure t
- :hook (server-after-make-frame-hook . frames-only-mode))
+  frames-only-mode
+  :ensure t
+  :hook (server-after-make-frame-hook . frames-only-mode))
 
 ;;; setup.el ends here

@@ -14,7 +14,7 @@ black   = '#0d0d0d'
 red     = '#FF301B'
 green   = '#0ec248'
 yellow  = '#FFC620'
-blue    = '#6f94d1'
+blue    = '#3a79e0'
 magenta = '#b59adb'
 cyan    = '#21DEEF'
 white   = '#EBEBEB'
@@ -31,7 +31,7 @@ cyan    = '#73FBF1'
 white   = '#FEFEF8'
 
 [window]
-opacity = 0.7
+opacity = 0.95
 
 # Vi mode
 [[keyboard.bindings]]
@@ -44,5 +44,6 @@ cursor = '#FF0000'
 text   = '#111111'
 
 [colors.selection]
-text = '#111111'
-background = '#931b1b'
+text = '#EEEEEE'
+background = '#182d4d'
+

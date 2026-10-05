@@ -16,4 +16,8 @@
     ("eism" "evil-insert-state-map")
     ("evsm" "evil-visual-state-map")))
 
+(define-abbrev-table 'scad-mode-abbrev-table
+  '(("tra" "translate")
+    ("rot" "rotate")))
+
 (setq save-abbrevs 'silently)

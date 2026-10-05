@@ -17,6 +17,7 @@
     "pulseaudio",
     "network#eth",
     "network#wifi",
+    "custom/tailscale",
     "custom/vpn",
     "battery"
   ],
@@ -89,6 +90,14 @@
   "exec": "bash -c '~/.config/waybar/customs/vpn-status.sh'",
   "interval": 5,
   "signal": 3
+  },
+
+  // TAILSCALE
+  "custom/tailscale": {
+    "format": "  {} ",
+    "exec": "bash -c '~/.config/waybar/customs/tailscale-status.sh'",
+    "interval": 5,
+    "signal": 4,
   },
 
   // Battery

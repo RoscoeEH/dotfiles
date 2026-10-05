@@ -20,6 +20,7 @@ window#waybar {
 #custom-notifications,
 #pulseaudio,
 #network,
+#custom-tailscale,
 #custom-vpn,
 #battery,
 #clock {
@@ -96,6 +97,10 @@ window#waybar {
 
 #network {
     color: #82aaff;
+}
+
+#custom-tailscale {
+    color: #ffa96b
 }
 
 #custom-vpn {

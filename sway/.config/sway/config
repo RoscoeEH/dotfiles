@@ -13,7 +13,7 @@ font pango:FiraCode 8
 
 exec --no-startup-id dex-autostart --autostart --environment sway
 
-exec --no-startup-id nordvpn c new_york
+exec --no-startup-id ~/Tools/start_default_vpn.sh
 
 exec swayidle -w \
     before-sleep 'swaylock -f -i ~/System_Images/screensaver.png' \
@@ -204,8 +204,8 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+o workspace next
-bindsym $mod+i workspace prev
+bindsym $mod+o workspace next_on_output
+bindsym $mod+i workspace prev_on_output
 
 bindsym $mod+s move workspace output right
 
@@ -291,13 +291,13 @@ bindsym $mod+r mode "resize"
 exec waybar
 
 # Configure laptop + dock monitors
-output DP-11 resolution 1920x1080 position 1080 400
-output DP-9 transform 90 resolution 1080x1920 position 0 0
-bindsym $mod+Shift+Up exec "swaymsg output eDP-1 enable"
-bindsym $mod+Shift+Down exec "swaymsg output eDP-1 disable"
+# output DP-11 resolution 1920x1080 position 1080 400
+# output DP-9 transform 90 resolution 1080x1920 position 0 0
+# bindsym $mod+Shift+Up exec "swaymsg output eDP-1 enable"
+# bindsym $mod+Shift+Down exec "swaymsg output eDP-1 disable"
 
 # Wallpaper
-exec swaybg -i ~/System_Images/screensaver.jpg -m fill
+exec swaybg -i ~/System_Images/screensaver.png -m fill
 
 # Open Emacs
 bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
