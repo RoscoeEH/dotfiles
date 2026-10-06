@@ -13,11 +13,8 @@ alias vpn='nmcli connection'
 
 alias shredd='shred -uz --iterations=10'
 
-alias wirein='sudo wg-quick up wg0'
-alias wireout='sudo wg-quick down wg0'
-
 alias tarzip='tar -czf'
-alias extract='tar -xvf'
+alias untar='tar -xvf'
 
 alias mnt='~/Tools/open-and-mnt.sh'
 alias eject='~/Tools/eject-drive.sh'
@@ -41,3 +38,7 @@ alias r="ranger"
 alias tst="~/Tools/toggle-tailscale.sh"
 alias ts="tailscale"
 
+alias gethex='openssl rand -hex'
+alias compare='~/Tools/hash-compare.sh'
+
+alias o='~/Tools/mime-open.sh'

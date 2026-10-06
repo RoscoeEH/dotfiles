@@ -67,13 +67,13 @@
 ;; Non-interactive shell loading
 (setq exec-path-from-shell-arguments '("-l"))
 
-;; Alter jit-lock time 
+;; Alter jit-lock time
 (setq jit-lock-defer-time 0.2)
 
 ;; Diable cursor blinking
 (blink-cursor-mode -1)
 
-;; Diable auto-updating of files based on the disk as it is not relevant to my use case
+;; Enable auto revert
 (global-auto-revert-mode 1)
 
 ;; diable garbage collection on start-up
@@ -119,21 +119,6 @@
 
 ;; Do not store temp files
 (setq make-backup-files nil)
-
-
-;; ;; Side fringe
-;; (set-fringe-mode '(16 . 16))
-;; (setq-default visual-line-fringe-indicators
-;;               '(left-curly-arrow right-curly-arrow))
-;; (add-hook
-;;  'visual-line-mode-hook
-;;  (lambda ()
-;;    (setq-local visual-line-fringe-indicators
-;;                '(left-curly-arrow right-curly-arrow))
-;;    (set-window-fringes nil 16 16)))
-
-;; ;; Make the fringe indicators red
-;; (custom-set-faces '(fringe ((t (:foreground "red" :background nil)))))
 
 ;; compilation buffer printing
 (require 'ansi-color)

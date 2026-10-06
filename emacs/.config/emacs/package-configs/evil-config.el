@@ -26,8 +26,8 @@
 
 (defun insert-line-above (universal)
   "Insert an empty line above the current line.
-The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line 
-above the current one will be created, but the point will not change its location.  With 
+The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line
+above the current one will be created, but the point will not change its location.  With
 the default UNIVERSAL argument, the point will change to the beginning of the new line created."
   (interactive "P")
   (if (equal universal '(4))
@@ -67,20 +67,23 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
   :ensure t
   :after evil
   :config
+  (setq evil-snipe-smart-case t
+        evil-snipe-scope 'whole-buffer
+        evil-snipe-repeat-scope 'whole-buffer)
   (evil-snipe-mode 1)
   (evil-snipe-override-mode 1))
 
 
-  ;; Use Space-s
-  (with-eval-after-load 'evil-snipe
-    (define-key evil-normal-state-map (kbd "SPC s") 'evil-snipe-s)
-    (define-key evil-visual-state-map (kbd "SPC s") 'evil-snipe-s)
-    (define-key evil-normal-state-map (kbd "SPC S") 'evil-snipe-S)
-    (define-key evil-visual-state-map (kbd "SPC S") 'evil-snipe-S))
+;; Use Space-s
+(with-eval-after-load 'evil-snipe
+  (define-key evil-normal-state-map (kbd "SPC s") 'evil-snipe-s)
+  (define-key evil-visual-state-map (kbd "SPC s") 'evil-snipe-s)
+  (define-key evil-normal-state-map (kbd "SPC S") 'evil-snipe-S)
+  (define-key evil-visual-state-map (kbd "SPC S") 'evil-snipe-S))
 
-  ;; Enable wrapping
-  (setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
-  (setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
+;; Enable wrapping
+(setq evil-snipe-scope 'whole-buffer) ;; Search the entire buffer and wrap around
+(setq evil-snipe-repeat-scope 'whole-buffer) ;; Wrapping for repeated searches
 
 ;; Optionally change cursor colors by Evil state if using evil-mode
 (setq evil-normal-state-cursor '("hot pink" box))
@@ -92,4 +95,5 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
 
 (evil-set-initial-state 'comint-mode 'normal)
 
+(define-key evil-normal-state-map (kbd "z o") 'evil-open-fold-rec)
 ;;; evil-config.el ends here
