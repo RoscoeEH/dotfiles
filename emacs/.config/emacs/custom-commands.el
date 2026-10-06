@@ -245,11 +245,11 @@
   (make-frame))
 
 (global-set-key (kbd "C-x s") 'sway-spawn-frame-right)
-(global-set-key (kbd "C-x d") 'sway-spawn-frame-below) 
+(global-set-key (kbd "C-x d") 'sway-spawn-frame-below)
 (global-set-key (kbd "C-x f") 'delete-window)
 (global-set-key (kbd "C-x a") 'delete-other-windows)
 (global-set-key (kbd "C-x o") 'balance-windows)
-(global-set-key (kbd "M-o") 'other-frame)
+(global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-N") 'make-frame)
 ;; (global-set-key (kbd "M-F") 'other-frame)
 (global-set-key (kbd "M-D") 'delete-frame)
@@ -356,6 +356,9 @@ Returns the command string, or nil if not found."
             ((and (eq major-mode 'python-mode) file-path)
              (format "python3 %s" (file-name-nondirectory file-path)))
 
+            ((and (eq major-mode 'sh-mode) file-path)
+             (format "./%s" (file-name-nondirectory file-path)))
+
             ((or (eq major-mode 'rust-mode) (eq major-mode 'toml-mode))
              (format "cd %s && cargo build"
                      (locate-dominating-file default-directory "Cargo.toml")))
@@ -410,7 +413,8 @@ Returns the command string, or nil if not found."
 ;; dired mode helpfuls
 (with-eval-after-load 'dired
   (define-key dired-mode-map [mouse-1] 'dired-single-buffer)
-  (define-key dired-mode-map [mouse-2] 'dired-single-buffer))
+  (define-key dired-mode-map [mouse-2] 'dired-single-buffer)
+  (define-key dired-mode-map (kbd "p") #'dired-up-directory))
 
 ;; Define M-b as a prefix key
 (define-prefix-command 'bookmark-prefix-map)
