@@ -64,7 +64,7 @@ declare -A WORKSPACE_MAP=(
     ["1"]="vertical"
     ["2"]="horizontal"
     ["8"]="vertical"
-    ["9"]="horizontal"
+    ["9"]="vertical"
 )
 
 # ----------------------------------------------------------------------

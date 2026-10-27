@@ -42,3 +42,5 @@ export PATH="$HOME/.local/opt/synlig_toolchain/synlig:$PATH"
 
 # opencode
 export PATH=/home/roscoe/.opencode/bin:$PATH
+
+bind -x '"\e[99~": emacsclient -c -n "$PWD/"'

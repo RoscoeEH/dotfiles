@@ -12,6 +12,8 @@
   (setenv "GIT_ASKPASS" "")
   (setq magit-log-arguments '("--graph" "--oneline" "--decorate" "--color"))
   :config
+  (setq magit-display-buffer-function
+        #'magit-display-buffer-same-window-except-diff-v1)
   ;; Keybindings inside magit buffers
   (define-key magit-mode-map (kbd "M-p") 'magit-section-backward-sibling)
   (define-key magit-mode-map (kbd "M-n") 'magit-section-forward-sibling)

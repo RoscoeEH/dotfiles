@@ -357,6 +357,7 @@ bindsym $mod+z exec --no-startup-id pkill -RTMIN+1 i3blocks; exec --no-startup-i
 
 exec slack --start-in-tray
 exec thunderbird --start-in-tray
+exec --no-startup-id urxvt -e sh -c "gh news; exec bash"
 
 bindsym $mod+n exec --no-startup-id urxvt -e bash -c "~/Documents/Toolchains/dunst-tui/target/release/dunst-tui"
 
@@ -364,4 +365,4 @@ exec --no-startup-id xrdb -load ~/.Xresources
 
 exec --no-startup-id unclutter -idle 2
 
-bindsym $mod+Shift+slash exec --no-startup-id ~/.local/bin/codex-status-notify
+bindsym $mod+Shift+slash exec --no-startup-id ~/Tools/limit-notif.sh
