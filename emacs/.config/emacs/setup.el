@@ -69,7 +69,7 @@
 ;; Non-interactive shell loading
 (setq exec-path-from-shell-arguments '("-l"))
 
-;; Alter jit-lock time 
+;; Alter jit-lock time
 (setq jit-lock-defer-time 0.2)
 
 ;; Diable cursor blinking
@@ -176,5 +176,11 @@
 
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
+;; dedicated auto-save-folder
+(defvar auto-save-folder (expand-file-name "~/.emacs.d/auto-save/"))
+(unless (file-exists-p auto-save-folder)
+  (make-directory auto-save-folder t))
+(setq auto-save-file-name-transforms `((".*" ,auto-save-folder t)))
 
 ;;; setup.el ends here

@@ -53,3 +53,5 @@ alias getlines='~/Tools/count-code-lines.sh'
 alias compare='~/Tools/hash-compare.sh'
 
 alias popcommit='git reset --soft HEAD~1'
+alias worktree='~/Tools/git-new-worktree.sh'
+alias clangclean='clang-format-21 -i $(git ls-files '*.c' '*.h')'
