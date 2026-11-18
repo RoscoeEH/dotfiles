@@ -608,4 +608,62 @@ then cd to the remote directory."
     (insert (format "# %s (%s)\n\n" name (format-time-string "%Y-%m-%d %H:%M")))))
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+(defun clang-clean ()
+  "Run clang-format-21 on all Git-tracked C and header files."
+  (interactive)
+  (let ((default-directory (or (vc-root-dir) default-directory)))
+    (compile "clang-format-21 -i $(git ls-files '*.c' '*.h')")))
+
+(defun insert-timestamp ()
+  "Insert the current time for meeting notes."
+  (interactive)
+  (insert (format-time-string "%H:%M: \n")))
+
+(global-set-key (kbd "C-c t") #'insert-timestamp)
+
+(defcustom opencode-url "http://127.0.0.1:4096"
+  "URL of the running OpenCode TUI server."
+  :type 'string)
+
+(defun opencode-post (endpoint &optional text)
+  "POST TEXT to OpenCode ENDPOINT."
+  (let ((url-request-method "POST")
+        (url-request-extra-headers
+         '(("Content-Type" . "application/json")))
+        (url-request-data
+         (encode-coding-string
+          (json-encode (if text `((text . ,text)) '()))
+          'utf-8)))
+    (url-retrieve
+     (concat opencode-url endpoint)
+     (lambda (status)
+       (unwind-protect
+           (if (plist-get status :error)
+               (message "OpenCode request failed: %s"
+                        (plist-get status :error))
+             (goto-char (point-min))
+             (if (re-search-forward
+                  "^HTTP/[0-9.]+ \\([0-9]+\\)" nil t)
+                 (let ((code (string-to-number (match-string 1))))
+                   (unless (<= 200 code 299)
+                     (message "OpenCode HTTP error: %d" code)))
+               (message "OpenCode: unexpected HTTP response")))
+         (kill-buffer (current-buffer)))))
+    nil t))
+
+(defun opencode-send-region (start end)
+  "Append selected region to the running OpenCode TUI prompt."
+  (interactive "r")
+  (unless (use-region-p)
+    (user-error "Select a region first"))
+  (let* ((selection (buffer-substring-no-properties start end))
+         (source (or (buffer-file-name) (buffer-name)))
+         (text (format "\n\nFrom %s:\n```\n%s\n```\n"
+                       source selection)))
+    (opencode-post "/tui/append-prompt" text)
+    (message "Sending selection to OpenCode TUI")))
+
+(global-set-key (kbd "C-c o") #'opencode-send-region)
+
 ;;; custum-commands.el ends here
