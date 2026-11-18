@@ -59,7 +59,10 @@ the default UNIVERSAL argument, the point will change to the beginning of the ne
   (define-key evil-visual-state-map (kbd "<down>") 'evil-scroll-line-down)
   ;; Bind occur to Space-f in normal and visual states
   (define-key evil-normal-state-map (kbd "SPC f") 'occur)
-  (define-key evil-visual-state-map (kbd "SPC f") 'occur))
+  (define-key evil-visual-state-map (kbd "SPC f") 'occur)
+  (evil-define-key 'normal md-mode-map
+    (kbd "g g") #'evil-goto-first-line
+    (kbd "z m") #'toggle-markdown-check))
 
 
 
