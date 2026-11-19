@@ -282,26 +282,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         position top
-#         status_command i3blocks
-#         tray_output primary
-#     colors {
-#         background #000000
-#         statusline #29b533
-#         separator  #875e2f
-#     }
-# }
-
 exec waybar
-
-# Configure laptop + dock monitors
-# output DP-11 resolution 1920x1080 position 1080 400
-# output DP-9 transform 90 resolution 1080x1920 position 0 0
-# bindsym $mod+Shift+Up exec "swaymsg output eDP-1 enable"
-# bindsym $mod+Shift+Down exec "swaymsg output eDP-1 disable"
 
 # Wallpaper
 exec swaybg -i ~/System_Images/screensaver.png -m fill
@@ -314,14 +295,6 @@ bindsym $mod+Shift+b exec --no-startup-id glide --private-window
 
 # Keyring
 exec --no-startup-id sh -c 'eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg); export SSH_AUTH_SOCK'
-
-# # gaps configuration
-# gaps inner 10
-# gaps outer 5
-
-# bindsym $mod+Shift+equal gaps inner all plus 5
-# bindsym $mod+Shift+minus gaps inner all minus 5
-
 
 # Added ranger as a file manager
 bindsym $mod+f exec alacritty -e ranger
