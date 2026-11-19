@@ -47,3 +47,15 @@ text   = '#111111'
 text = '#EEEEEE'
 background = '#182d4d'
 
+# Ctrl+N creates new window in current directory
+[[keyboard.bindings]]
+key = "N"
+mods = "Control"
+action = "CreateNewWindow"
+
+# Ctrl+Shift+E opens emacsclient dired in current directory
+[[keyboard.bindings]]
+key = "E"
+mods = "Control|Shift"
+command = { program = "emacsclient", args = ["-c", "-n", "--alternate-editor=", "."] }
+
