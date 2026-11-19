@@ -166,7 +166,8 @@ bindsym $mod+comma layout tabbed
 bindsym $mod+slash layout splith
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space exec --no-startup-id ~/Tools/sway-toggle-floating.sh
+
 
 default_border pixel 3
 default_floating_border pixel 3
@@ -261,6 +262,9 @@ mode "resize" {
         bindsym k resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
 
+        bindsym minus resize shrink height 5 px or 5 ppt, resize shrink width 5 px or 5 ppt, move position center
+        bindsym plus resize grow height 5 px or 5 ppt, resize grow width 5 px or 5 ppt, move position center
+
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 5 px or 5 ppt
         bindsym Down resize grow height 5 px or 5 ppt
@@ -272,6 +276,8 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
         bindsym b exec --no-startup-id "~/Tools/balance-workspace"
+        bindsym f resize set width 95 ppt height 95 ppt, move position center
+        bindsym c move position center
 }
 
 bindsym $mod+r mode "resize"
