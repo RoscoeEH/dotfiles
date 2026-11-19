@@ -532,17 +532,77 @@ Returns the command string, or nil if not found."
 (define-key evil-normal-state-map (kbd ":") 'execute-extended-command)
 (define-key evil-visual-state-map (kbd ":") 'execute-extended-command)
 
-
+(require 'tramp)
 (defun open-external-terminal ()
-  "Open a native terminal"
+  "Open an external alacritty terminal in `default-directory'.
+If the directory is remote (TRAMP), the terminal runs ssh and cds to
+the same directory on the remote host.  Under Sway the terminal is
+started with `swaymsg exec' so it survives Emacs; otherwise directly."
   (interactive)
-  (let ((current-dir (or (file-name-directory (buffer-file-name)) 
-                         default-directory)))
-    (call-process "alacritty" nil 0 nil 
-                  "--working-directory" (expand-file-name current-dir))))
+  (let ((cmd
+         (if (file-remote-p default-directory)
+             ;; Remote: /method:user@host#port:/remote/path
+             (let* ((vec    (tramp-dissect-file-name default-directory))
+                    (method (tramp-file-name-method vec))
+                    (user   (tramp-file-name-user vec))
+                    (host   (tramp-file-name-host vec))
+                    (port   (tramp-file-name-port vec))
+                    (path   (or (tramp-file-name-localname vec) ""))
+                    (target (if (or (null user) (string= user ""))
+                                host
+                              (format "%s@%s" user host)))
+                    ;; This string is executed by the *remote* shell.
+                    (remote-cmd
+                     (cond
+                      ;; "~" or empty: go to the remote home directory.
+                      ((member path '("~" "")) "cd; exec ${SHELL:-sh}")
+                      ;; "~/..." or "~user/...": must stay unquoted so the
+                      ;; remote shell can expand the tilde.
+                      ((string-prefix-p "~" path)
+                       (format "cd -- %s; exec ${SHELL:-sh}" path))
+                      ;; Absolute path: quote it for the remote shell.
+                      (t (format "cd -- %s; exec ${SHELL:-sh}"
+                                 (shell-quote-argument path)))))
+                    (ssh-args
+                     (format "-t %s%s"
+                             (if (and port (not (string= port "")))
+                                 (format "-p %s " port)
+                               "")
+                             (shell-quote-argument target))))
+               (unless (or (null method)
+                           (member method '("ssh" "scp" "sshx" "rsync" "sftp" "")))
+                 (user-error "TRAMP method `%s' is not ssh-compatible" method))
+               (format "alacritty -e ssh %s %s"
+                       ssh-args (shell-quote-argument remote-cmd)))
+           ;; Local: alacritty's option is --working-directory, not -d.
+           (format "alacritty --working-directory %s"
+                   (shell-quote-argument
+                    (expand-file-name default-directory))))))
+    (if (getenv "SWAYSOCK")
+        (call-process "swaymsg" nil 0 nil "exec" cmd)
+      (start-process "external-terminal" nil "sh" "-c" cmd))))
 
-(global-set-key (kbd "C-x c") 'open-external-terminal)
+(global-set-key (kbd "C-x t t") 'open-external-terminal)
 
 (global-set-key (kbd "M-C") 'calc)
+
+(defun note (name)
+  "Prompt for a note NAME (defaults to 'notes' if empty), create a markdown file with NAME, date, and time in the path ~/Documents/Notes."
+  (interactive
+   (list (let ((input (read-string "Note name (default: 'notes'): ")))
+           (if (string-empty-p input) "notes" input))))
+  (let* ((base-dir "~/Documents/Notes/")
+         (timestamp (format-time-string "%Y-%m-%d_%H-%M-%S"))
+         (filename (format "%s-%s.md" name timestamp))
+         (full-path (expand-file-name filename base-dir)))
+    ;; Ensure directory exists
+    (unless (file-directory-p base-dir)
+      (make-directory base-dir t))
+    ;; Create and open the file
+    (find-file full-path)
+    ;; Insert a title in Markdown format
+    (insert (format "# %s (%s)\n\n" name (format-time-string "%Y-%m-%d %H:%M")))))
+
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;; custum-commands.el ends here
