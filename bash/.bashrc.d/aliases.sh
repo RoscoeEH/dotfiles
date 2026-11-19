@@ -10,6 +10,7 @@ alias cr='cargo run'
 alias cc='cargo clean'
 
 alias vpn='nmcli connection'
+alias vpns='nmcli con show --active | grep wg'
 
 alias shredd='shred -uz --iterations=10'
 
