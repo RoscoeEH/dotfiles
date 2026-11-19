@@ -29,3 +29,8 @@ profile home {
 profile moving {
     output $LAPTOP enable
 }
+
+profile laptop-external {
+    output $LAPTOP enable
+    output * mode preferred position 2256,0
+}
