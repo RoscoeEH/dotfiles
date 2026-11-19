@@ -17,7 +17,6 @@
     "pulseaudio",
     "network#eth",
     "network#wifi",
-    "custom/tailscale",
     "custom/vpn",
     "battery"
   ],
